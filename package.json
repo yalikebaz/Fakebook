@@ -8,9 +8,9 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npm run client\" \"npm run server\"",
-    "client": "npm run start -w frontend",
-    "server": "npm run start -w backend"
+    "dev": "concurrently \"npm run client\" \"npm run server\" --kill-others --names \"client:, server: \" --prefix \"{name}\" ",
+    "client": "npm run start --workspace frontend",
+    "server": "npm run start --workspace backend"
   },
   "keywords": [],
   "author": "",
