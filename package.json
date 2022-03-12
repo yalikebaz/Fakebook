@@ -8,7 +8,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "dev": "concurrently \"npm run client\" \"npm run server\" --kill-others --names \"client:, server: \" --prefix \"{name}\" ",
+    "dev": "concurrently \"npm run client\" \"npm run server\" --kill-others --names \"client:, server: \" --prefix \"{time}-{name}\" --timestamp-format \"hh:mm:ss\"",
     "client": "npm run start --workspace frontend",
     "server": "npm run start --workspace backend"
   },

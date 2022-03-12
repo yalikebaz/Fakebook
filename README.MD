@@ -4,3 +4,8 @@
 - Github actions run tests automatically 
 - User can view posts, add posts, edit posts
 - User can view a friend's posts
+
+Logins:
+john@john.com, john
+test@test.com, test
+new@new.com, ne

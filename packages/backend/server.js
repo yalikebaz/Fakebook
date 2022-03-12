@@ -2,11 +2,11 @@ import express from "express";
 import loginRouter from "./routes/login.js";
 import mysql from "mysql2";
 import colors from "colors";
-import dotenv from "dotenv"
-import cors from "cors"
+import dotenv from "dotenv";
+import cors from "cors";
 
-colors.enable()
-dotenv.config()
+colors.enable();
+dotenv.config();
 
 // Connecting to mySql
 const connection = mysql.createConnection({
@@ -18,14 +18,15 @@ const connection = mysql.createConnection({
 
 connection.connect(error => {
   if (error) {
-    return console.error("Database connection error: ".red + error.message.red);
+    return console.error(
+      "Database connection error (is it on?): ".red + error.message.red
+    );
   }
   console.log("Connected to the MySQL server!".blue.underline);
 });
-
 const app = express();
 
-app.use(cors())
+app.use(cors());
 
 app.use("/login", loginRouter);
 
