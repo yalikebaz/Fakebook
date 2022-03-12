@@ -1,4 +1,3 @@
-import Container from "../../components/Container/Container";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Profile = () => {
@@ -15,10 +14,10 @@ const Profile = () => {
   }
 
   return (
-    <Container>
+    <>
       <h1>{`Hi, ${user?.nickname}`}</h1>
       <pre>{user.sub}</pre>
-    </Container>
+    </>
   );
 };
 
