@@ -1,4 +1,4 @@
-import { INCREMENT } from "../actions /test";
+import { INCREMENT } from "../actions/test";
 
 const test = (state = 0, action) => {
   switch (action.type) {
