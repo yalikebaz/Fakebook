@@ -10,11 +10,11 @@ const Nav = () => {
     <>
       <nav>
         <img className="fb" src={fakebook} alt="fakebook" />
-        <Link to={"/profile"} className="link">
-          Profile
-        </Link>
         <Link to={"/timeline"} className="link">
           Timeline
+        </Link>
+        <Link to={"/profile"} className="link">
+          Profile
         </Link>
         <button className="logout" onClick={logout}>
           Logout

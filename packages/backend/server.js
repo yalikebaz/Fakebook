@@ -9,7 +9,7 @@ colors.enable();
 dotenv.config();
 
 // Connecting to mySql
-const connection = mysql.createConnection({
+export const connection = mysql.createConnection({
   host: process.env.SQL_CREDS_HOST,
   user: process.env.SQL_CREDS_USER,
   password: process.env.SQL_CREDS_PASS,
@@ -24,7 +24,9 @@ connection.connect(error => {
   }
   console.log("Connected to the MySQL server!".blue.underline);
 });
+
 const app = express();
+app.use(express.json());
 
 app.use(cors());
 

@@ -21,8 +21,8 @@ function App() {
           <Container>
             <Routes>
               <Route path="/" element={<Login />} />
-              <Route path="/profile" element={<Profile />} />
               <Route path="/timeline" element={<Timeline />} />
+              <Route path="/profile" element={<Profile />} />
             </Routes>
           </Container>
         </BrowserRouter>
