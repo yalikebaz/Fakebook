@@ -3,7 +3,15 @@ import "./Container.css";
 import { useAuth0 } from "@auth0/auth0-react";
 
 const Container = ({ children }) => {
-  const { isAuthenticated } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
+
+  if (isLoading) {
+    return (
+      <div className="container">
+        <div className="lds-dual-ring" />
+      </div>
+    );
+  }
   return (
     <>
       {isAuthenticated && <Nav />}

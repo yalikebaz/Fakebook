@@ -3,19 +3,15 @@ import { connection } from "../server.js";
 
 const router = express.Router();
 
-// If the user doesn't exist, add them to SQL DB
 router.post("/", (req, res) => {
-  const { id } = req.body;
+  // Add user to mySQL db
+  const { id, name } = req.body;
   try {
     connection.query(
-      `SELECT * FROM fakebook.users WHERE id = '${id}'`,
+      `REPLACE INTO fakebook.users SET id = '${id}', name = '${name}'`,
       (err, results) => {
-        // If the data exists, return it
-        if (results.length !== 0) {
-          return res.json(results[0]);
-        }
-        // TODO Otherwise let's add it to the DB
-        res.send("No matching data found");
+        if (err) res.status(400).send(err);
+        res.status(200).send("Success");
       }
     );
   } catch (error) {

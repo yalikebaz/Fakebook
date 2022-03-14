@@ -1,16 +1,9 @@
 import { STORE_USER } from "../actions/user";
 
-const initialState = [
-  {
-    id: "testid",
-    name: "testname"
-  }
-];
-
-const user = (state = initialState, action) => {
+const user = (state = null, action) => {
   switch (action.type) {
     case STORE_USER:
-      return [...state, action.payload];
+      return action.payload;
     default:
       return state;
   }

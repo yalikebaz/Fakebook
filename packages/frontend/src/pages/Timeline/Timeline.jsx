@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
-import userActionCreator from "../../redux/actions/user";
+import { checkUser } from "../../redux/actions/user";
 import { useEffect } from "react";
 
 const Timeline = () => {
@@ -9,14 +9,16 @@ const Timeline = () => {
 
   useEffect(() => {
     if (!isLoading) {
-      console.log("user :>> ", user);
-      dispatch(userActionCreator(user));
+      dispatch(checkUser(user));
     }
   }, [dispatch, isLoading, user]);
 
+  const firstName =
+    user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);
+
   return (
     <>
-      <p>Timeline view</p>
+      <p>{firstName}'s timeline</p>
     </>
   );
 };

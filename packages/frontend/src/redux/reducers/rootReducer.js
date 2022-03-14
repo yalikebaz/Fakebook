@@ -4,7 +4,7 @@ import user from "./user";
 
 const rootReducer = combineReducers({
   countValue: test,
-  users: user
+  loggedInUser: user
 });
 
 export default rootReducer;
