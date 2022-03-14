@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./Nav.css";
 import fakebook from "../../../src/assets/fakebook_white.png";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -10,12 +10,18 @@ const Nav = () => {
     <>
       <nav>
         <img className="fb" src={fakebook} alt="fakebook" />
-        <Link to={"/timeline"} className="link">
+        <NavLink
+          to={"/timeline"}
+          className={({ isActive }) => (isActive ? "active " : "link")}
+        >
           Timeline
-        </Link>
-        <Link to={"/profile"} className="link">
+        </NavLink>
+        <NavLink
+          to={"/profile"}
+          className={({ isActive }) => (isActive ? "active " : "link")}
+        >
           Profile
-        </Link>
+        </NavLink>
         <button className="logout" onClick={logout}>
           Logout
         </button>

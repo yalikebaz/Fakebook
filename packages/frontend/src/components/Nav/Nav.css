@@ -8,6 +8,7 @@ nav {
   display: flex;
   align-items: center;
   padding: 0 20px;
+  font-size: 20px;
 }
 
 .fb {
@@ -15,10 +16,16 @@ nav {
   margin: 50px;
 }
 
+.active{
+  color: yellow;
+  text-decoration: none;
+  margin-left: 70px;
+}
+
 .link {
   color: rgb(238, 238, 222);
   text-decoration: none;
-  margin-right: 50px;
+  margin-left: 70px;
 }
 
 .link:hover {
