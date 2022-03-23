@@ -28,31 +28,50 @@ const Timeline = () => {
 
   const [title, setTitle] = useState();
   const [body, setBody] = useState();
+  const [contentError, setContentError] = useState(false);
 
   const handleSubmit = e => {
     e.preventDefault();
+    setContentError(false);
+
+    // Error handling empty title or body
+    if (!title || !body) {
+      setContentError(true);
+      setTimeout(() => {
+        setContentError(false);
+      }, 5000);
+      return;
+    }
+
     const postContents = {
       title,
       body
     };
-    //TODO make this saga
     dispatch(post(postContents));
   };
 
   return (
     <>
-      <h1>{firstName}'s timeline</h1>
-      <PostForm
-        setPostTitle={title => setTitle(title)}
-        setPostBody={body => setBody(body)}
-        handleSubmit={handleSubmit}
-      />
-      <h2>Posts</h2>
-      {allPosts.map((post, i) => (
-        <div key={i}>
-          <Post title={post.title} body={post.body} />
-        </div>
-      ))}
+      <section>
+        <h1>{firstName}'s timeline</h1>
+        <PostForm
+          setPostTitle={title => setTitle(title)}
+          setPostBody={body => setBody(body)}
+          handleSubmit={handleSubmit}
+        />
+        {contentError && (
+          <p style={{ color: "red" }}>Please add content to your post!</p>
+        )}
+      </section>
+
+      <section>
+        <h2>Posts</h2>
+        {allPosts.map((post, i) => (
+          <div key={i}>
+            <Post title={post.title} body={post.body} />
+          </div>
+        ))}
+      </section>
     </>
   );
 };
