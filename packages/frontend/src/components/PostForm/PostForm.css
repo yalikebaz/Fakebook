@@ -25,6 +25,7 @@ button {
   border: 1px solid rgb(133, 133, 133);
   border-radius: 5px;
   padding: 5px 8px;
+  cursor: pointer;
 }
 
 textarea {
