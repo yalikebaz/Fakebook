@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { checkUser } from "../../redux/actions/user";
 import { useEffect } from "react";
 import PostForm from "../../components/PostForm/PostForm";
-import { getPosts, post } from "../../redux/actions/post";
+import { addNewPost, getPosts } from "../../redux/actions/post";
 import Post from "../../components/Post/Post";
 
 const Timeline = () => {
@@ -47,7 +47,7 @@ const Timeline = () => {
       title,
       body
     };
-    dispatch(post(postContents));
+    dispatch(addNewPost(postContents));
   };
 
   return (

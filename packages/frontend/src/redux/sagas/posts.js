@@ -1,10 +1,15 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 import { store } from "../../App";
-import { ADD_POST, GET_POSTS, storePosts } from "../actions/post";
+import {
+  ADD_NEW_POST,
+  GET_POSTS,
+  storeNewPost,
+  storePosts
+} from "../actions/post";
 
 // Getting posts from DB, and then dispatching action to store in redux store
-function* getUserPosts(action) {
+function* getAllUserPosts(action) {
   try {
     const response = yield call(
       axios.get,
@@ -17,11 +22,11 @@ function* getUserPosts(action) {
 }
 
 export function* getPosts() {
-  yield takeLatest(GET_POSTS, getUserPosts);
+  yield takeLatest(GET_POSTS, getAllUserPosts);
 }
 
 // Adding post to DB
-function* addUserPost(action) {
+function* addNewUserPost(action) {
   try {
     const userId = store.getState().loggedInUser.sub;
     const response = yield call(
@@ -32,13 +37,12 @@ function* addUserPost(action) {
         body: action.payload.body
       }
     );
-    console.log("response from saga", response);
-    // yield put(storePosts(response.data));
+    yield put(storeNewPost(response.data));
   } catch (error) {
     console.log(error);
   }
 }
 
 export function* addPost() {
-  yield takeLatest(ADD_POST, addUserPost);
+  yield takeLatest(ADD_NEW_POST, addNewUserPost);
 }
