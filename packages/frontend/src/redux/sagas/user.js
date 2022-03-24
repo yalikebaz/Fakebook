@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import axios from "axios";
-import { CHECK_USER, storeUser } from "../actions/user";
+import { CHECK_USER_DB, storeUser } from "../actions/user";
 import { store } from "../../App";
 
 function* checkUserDB(action) {
@@ -27,7 +27,7 @@ function* checkUserDB(action) {
 }
 
 function* watchUser() {
-  yield takeLatest(CHECK_USER, checkUserDB);
+  yield takeLatest(CHECK_USER_DB, checkUserDB);
 }
 
 export default watchUser;

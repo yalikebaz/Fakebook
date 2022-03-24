@@ -1,11 +1,7 @@
 import "./Button.css";
 
-const Button = ({ children, handleClick }) => {
-  return (
-    <>
-      <button onClick={handleClick}>{children}</button>
-    </>
-  );
+const Button = ({ children, onClick }) => {
+  return <button onClick={onClick}>{children}</button>;
 };
 
 export default Button;

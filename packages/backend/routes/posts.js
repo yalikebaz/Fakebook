@@ -47,7 +47,6 @@ router.post("/:user_id", (req, res) => {
 router.delete("/:post_id", (req, res) => {
   try {
     connection.query(
-      // `INSERT INTO fakebook.posts (title, body, poster) VALUES ('${title}', '${body}', '${req.params.user_id}')`,
       `DELETE FROM fakebook.posts WHERE(id = '${req.params.post_id}')`,
       (err, results) => {
         if (err) res.status(400).send(err);

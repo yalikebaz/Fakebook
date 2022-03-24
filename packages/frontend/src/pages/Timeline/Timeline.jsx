@@ -1,10 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { checkUser } from "../../redux/actions/user";
 import { useEffect } from "react";
 import PostForm from "../../components/PostForm/PostForm";
-import { addNewPost, getPosts } from "../../redux/actions/post";
+import { getPosts } from "../../redux/actions/post";
 import Post from "../../components/Post/Post";
 
 const Timeline = () => {
@@ -24,52 +23,20 @@ const Timeline = () => {
         dispatch(checkUser(user));
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isLoading, user]);
-
-  const [title, setTitle] = useState();
-  const [body, setBody] = useState();
-  const [contentError, setContentError] = useState(false);
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    setContentError(false);
-
-    // Error handling empty title or body
-    if (!title || !body) {
-      setContentError(true);
-      setTimeout(() => {
-        setContentError(false);
-      }, 5000);
-      return;
-    }
-
-    const postContents = {
-      title,
-      body
-    };
-    dispatch(addNewPost(postContents));
-  };
 
   return (
     <>
       <section>
         <h1>{firstName}'s timeline</h1>
-        <PostForm
-          setPostTitle={title => setTitle(title)}
-          setPostBody={body => setBody(body)}
-          handleSubmit={handleSubmit}
-        />
-        {contentError && (
-          <p style={{ color: "red" }}>Please add content to your post!</p>
-        )}
+        <PostForm />
       </section>
 
       <section>
         <h2>Posts</h2>
-        {allPosts.map((post, i) => (
-          <div key={i}>
-            <Post title={post.title} body={post.body} />
-          </div>
+        {allPosts.map(post => (
+          <Post key={post.id} postContents={post} />
         ))}
       </section>
     </>

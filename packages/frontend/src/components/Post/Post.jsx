@@ -1,14 +1,21 @@
+import { useDispatch } from "react-redux";
+import { deletePost } from "../../redux/actions/post";
 import Button from "../Button/Button";
 import "./Post.css";
 
-const Post = ({ title, body }) => {
+const Post = ({ postContents }) => {
+  const dispatch = useDispatch();
+  const onDeletePost = id => {
+    dispatch(deletePost(id));
+  };
+
   return (
     <div className="postContainer">
       <div className="deletePost">
-        <Button>Delete</Button>
+        <Button onClick={() => onDeletePost(postContents.id)}>Delete</Button>
       </div>
-      <h1>{title}</h1>
-      <p>{body}</p>
+      <h1>{postContents.title}</h1>
+      <p>{postContents.body}</p>
     </div>
   );
 };

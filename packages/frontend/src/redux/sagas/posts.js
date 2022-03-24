@@ -2,8 +2,10 @@ import { put, call, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 import { store } from "../../App";
 import {
-  ADD_NEW_POST,
-  GET_POSTS,
+  ADD_NEW_POST_DB,
+  DELETE_POST_DB,
+  getPosts,
+  GET_POSTS_DB,
   storeNewPost,
   storePosts
 } from "../actions/post";
@@ -20,9 +22,8 @@ function* getAllUserPosts(action) {
     console.log(error);
   }
 }
-
-export function* getPosts() {
-  yield takeLatest(GET_POSTS, getAllUserPosts);
+export function* watchGetPosts() {
+  yield takeLatest(GET_POSTS_DB, getAllUserPosts);
 }
 
 // Adding a new user post to DB
@@ -42,7 +43,20 @@ function* addNewUserPost(action) {
     console.log(error);
   }
 }
-
 export function* addPost() {
-  yield takeLatest(ADD_NEW_POST, addNewUserPost);
+  yield takeLatest(ADD_NEW_POST_DB, addNewUserPost);
+}
+
+// Deleting a post
+function* deleteUserPost(action) {
+  try {
+    yield call(axios.delete, `http://localhost:3001/posts/${action.payload}`);
+    const userId = store.getState().loggedInUser.sub;
+    yield put(getPosts(userId));
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* deletePost() {
+  yield takeLatest(DELETE_POST_DB, deleteUserPost);
 }
