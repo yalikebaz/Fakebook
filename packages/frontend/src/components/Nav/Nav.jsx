@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import "./Nav.css";
 import fakebook from "../../../src/assets/fakebook_white.png";
 import { useAuth0 } from "@auth0/auth0-react";
+import Button from "../Button/Button";
 
 const Nav = () => {
   const { logout } = useAuth0();
@@ -22,9 +23,9 @@ const Nav = () => {
         >
           Profile
         </NavLink>
-        <button className="logout" onClick={logout}>
-          Logout
-        </button>
+        <div className="logout" onClick={logout}>
+          <Button>Logout</Button>
+        </div>
       </nav>
     </>
   );

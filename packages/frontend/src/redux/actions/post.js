@@ -26,9 +26,9 @@ export const storePosts = posts => {
   };
 };
 
-export const storeNewPost = post => {
+export const storeNewPost = postData => {
   return {
     type: STORE_NEW_POST,
-    payload: post
+    payload: postData
   };
 };

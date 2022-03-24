@@ -19,7 +19,7 @@ router.get("/:user_id", (req, res) => {
   }
 });
 
-// Submit post to user_id
+// Submit post to user id
 router.post("/:user_id", (req, res) => {
   const { title, body } = req.body;
   try {
@@ -29,9 +29,29 @@ router.post("/:user_id", (req, res) => {
       (err, results) => {
         if (err) res.status(400).send(err);
         res.status(200).json({
-          title,
-          body
+          post_data: {
+            id: results.insertId,
+            title,
+            body
+          }
         });
+      }
+    );
+  } catch (error) {
+    console.log("error", error);
+    res.send(error);
+  }
+});
+
+// Delete post by post id
+router.delete("/:post_id", (req, res) => {
+  try {
+    connection.query(
+      // `INSERT INTO fakebook.posts (title, body, poster) VALUES ('${title}', '${body}', '${req.params.user_id}')`,
+      `DELETE FROM fakebook.posts WHERE(id = '${req.params.post_id}')`,
+      (err, results) => {
+        if (err) res.status(400).send(err);
+        res.status(200).json({ deleted_post_id: req.params.post_id });
       }
     );
   } catch (error) {

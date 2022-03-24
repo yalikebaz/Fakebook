@@ -1,3 +1,4 @@
+import Button from "../Button/Button";
 import "./PostForm.css";
 
 const PostForm = ({ setPostTitle, setPostBody, handleSubmit }) => {
@@ -15,9 +16,7 @@ const PostForm = ({ setPostTitle, setPostBody, handleSubmit }) => {
         cols="40"
         placeholder="What do you want to share?"
       />
-      <button onClick={handleSubmit} type="submit" className="submitPost">
-        Submit Post
-      </button>
+      <Button onClick={handleSubmit}>Submit Post</Button>
     </form>
   );
 };

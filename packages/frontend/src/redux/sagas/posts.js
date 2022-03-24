@@ -25,7 +25,7 @@ export function* getPosts() {
   yield takeLatest(GET_POSTS, getAllUserPosts);
 }
 
-// Adding post to DB
+// Adding a new user post to DB
 function* addNewUserPost(action) {
   try {
     const userId = store.getState().loggedInUser.sub;
@@ -37,7 +37,7 @@ function* addNewUserPost(action) {
         body: action.payload.body
       }
     );
-    yield put(storeNewPost(response.data));
+    yield put(storeNewPost(response.data.post_data));
   } catch (error) {
     console.log(error);
   }

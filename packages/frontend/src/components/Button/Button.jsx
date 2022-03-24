@@ -1,7 +1,9 @@
-const Button = ({ text, handleClick }) => {
+import "./Button.css";
+
+const Button = ({ children, handleClick }) => {
   return (
     <>
-      <button onClick={handleClick}>{text}</button>
+      <button onClick={handleClick}>{children}</button>
     </>
   );
 };
