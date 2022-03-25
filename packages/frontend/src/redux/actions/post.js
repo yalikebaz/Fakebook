@@ -3,6 +3,7 @@ export const GET_POSTS_DB = "GET_POSTS_DB";
 export const STORE_POSTS = "STORE_POSTS";
 export const STORE_NEW_POST = "STORE_NEW_POST";
 export const DELETE_POST_DB = "DELETE_POST_DB";
+export const EDIT_POST_DB = "EDIT_POST_DB";
 
 // * Actions intercepted by saga to conduct side effects, use these!
 export const getPosts = userId => {
@@ -23,6 +24,13 @@ export const deletePost = id => {
   return {
     type: DELETE_POST_DB,
     payload: id
+  };
+};
+
+export const editPost = (title, body, id) => {
+  return {
+    type: EDIT_POST_DB,
+    payload: { title, body, id }
   };
 };
 

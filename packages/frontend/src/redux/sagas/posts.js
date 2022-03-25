@@ -4,6 +4,7 @@ import { store } from "../../App";
 import {
   ADD_NEW_POST_DB,
   DELETE_POST_DB,
+  EDIT_POST_DB,
   getPosts,
   GET_POSTS_DB,
   storeNewPost,
@@ -59,4 +60,21 @@ function* deleteUserPost(action) {
 }
 export function* deletePost() {
   yield takeLatest(DELETE_POST_DB, deleteUserPost);
+}
+
+// Editing a post
+function* editUserPost(action) {
+  try {
+    yield call(axios.put, `http://localhost:3001/posts/${action.payload.id}`, {
+      title: action.payload.title,
+      body: action.payload.body
+    });
+    const userId = store.getState().loggedInUser.sub;
+    yield put(getPosts(userId));
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* editPost() {
+  yield takeLatest(EDIT_POST_DB, editUserPost);
 }

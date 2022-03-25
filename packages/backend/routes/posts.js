@@ -59,4 +59,26 @@ router.delete("/:post_id", (req, res) => {
   }
 });
 
+// Update post by post id
+router.put("/:post_id", (req, res) => {
+  const { title, body } = req.body;
+  try {
+    let query = `UPDATE fakebook.posts SET title = '${title}', body = '${body}' WHERE (id = '${req.params.post_id}');`;
+    connection.query(query, (err, results) => {
+      if (err) res.status(400).send(err);
+      res.status(200).json({
+        message: "Success",
+        post: {
+          id: req.params.post_id,
+          title,
+          body
+        }
+      });
+    });
+  } catch (error) {
+    console.log("error", error);
+    res.send(error);
+  }
+});
+
 export default router;
