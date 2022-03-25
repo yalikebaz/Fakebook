@@ -44,10 +44,14 @@ const PostForm = () => {
         cols="40"
         placeholder="What do you want to share?"
       />
-      <Button onClick={handleSubmit}>Submit Post</Button>
-      {contentError && (
-        <p style={{ color: "red" }}>Please add content to your post!</p>
-      )}
+      <div className="bottomRow">
+        {contentError && (
+          <p className="error">Please add content to your post!</p>
+        )}
+        <div className="submit">
+          <Button onClick={handleSubmit}>Submit Post</Button>
+        </div>
+      </div>
     </form>
   );
 };

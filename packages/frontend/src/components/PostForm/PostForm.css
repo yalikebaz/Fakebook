@@ -22,3 +22,22 @@ textarea {
   border-radius: 5px;
   padding: 5px;
 }
+
+.bottomRow{
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  height: 25px;
+  position: relative;
+}
+
+.submit{
+  align-self: flex-end;
+  position: absolute;
+  right: 0;
+}
+
+.error{
+  color: red;
+  margin: 0;
+}
