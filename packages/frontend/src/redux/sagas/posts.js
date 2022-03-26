@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import axios from "axios";
-import { store } from "../../App";
+import { store } from "../../index.js";
 import {
   ADD_NEW_POST_DB,
   DELETE_POST_DB,

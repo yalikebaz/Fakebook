@@ -1,6 +1,7 @@
 import express from "express";
 import loginRouter from "./routes/login.js";
 import postRouter from "./routes/posts.js";
+import followRouter from "./routes/follow.js";
 import mysql from "mysql2";
 import colors from "colors";
 import dotenv from "dotenv";
@@ -33,6 +34,7 @@ app.use(cors());
 
 app.use("/login", loginRouter);
 app.use("/posts", postRouter);
+app.use("/follow", followRouter);
 
 app.listen(3001, () => {
   console.log("Server listening at 3001".blue.underline);

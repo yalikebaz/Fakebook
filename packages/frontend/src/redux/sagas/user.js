@@ -1,7 +1,7 @@
 import { put, call, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 import { CHECK_USER_DB, storeUser } from "../actions/user";
-import { store } from "../../App";
+import { store } from "../../index.js";
 
 function* checkUserDB(action) {
   try {

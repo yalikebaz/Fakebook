@@ -1,20 +1,14 @@
 import { useAuth0 } from "@auth0/auth0-react";
+import Followers from "../../components/Button/Followers/Followers";
 
 const Profile = () => {
-  const { user, isLoading } = useAuth0();
-
-  if (isLoading) {
-    return (
-      <div className="container">
-        <div className="lds-dual-ring" />
-      </div>
-    );
-  }
+  const { user } = useAuth0();
 
   return (
     <>
       <h1>{`Hi, ${user?.nickname}`}</h1>
       <pre>{user.sub}</pre>
+      <Followers />
     </>
   );
 };

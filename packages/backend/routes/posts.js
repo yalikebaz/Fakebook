@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/:user_id", (req, res) => {
   try {
     connection.query(
-      `SELECT * FROM fakebook.posts where poster='${req.params.user_id}';`,
+      `SELECT * FROM fakebook.posts WHERE poster='${req.params.user_id}';`,
       (err, results) => {
         if (err) res.status(400).send(err);
         res.status(200).send(results);
