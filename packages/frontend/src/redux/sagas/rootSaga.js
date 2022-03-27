@@ -1,4 +1,5 @@
 import { all } from "redux-saga/effects";
+import { getUserFollowers } from "./follower";
 import { addPost, deletePost, editPost, watchGetPosts } from "./posts";
 import watchUser from "./user";
 
@@ -8,7 +9,8 @@ function* rootSaga() {
     watchGetPosts(),
     addPost(),
     deletePost(),
-    editPost()
+    editPost(),
+    getUserFollowers()
   ]);
 }
 

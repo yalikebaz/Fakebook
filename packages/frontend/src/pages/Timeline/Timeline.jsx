@@ -9,6 +9,7 @@ const Timeline = () => {
   const firstName =
     user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);
 
+  //todo I think there is stil a place here for useeffect: to get posts again! in case posts were added from profile (and we dont want to refresh to get them?) not entirely sure... would profile posts trigger the app useeffect?
   return (
     <>
       <section>

@@ -5,7 +5,7 @@ import { store } from "../../index.js";
 
 function* checkUserDB(action) {
   try {
-    const userInStore = store.getState().loggedInUser;
+    const userInStore = store.getState().user;
 
     // If user in store already... don't update store and don't make API call
     if (userInStore) {

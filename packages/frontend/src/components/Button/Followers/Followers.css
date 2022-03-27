@@ -1,0 +1,21 @@
+.followerContainer {
+  width: 200px;
+  height: fit-content;
+  background-color: #12a1dd;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 10px 8px lightblue;
+  color: white;
+}
+
+.follower {
+  display: block;
+  width: fit-content;
+  text-decoration: none;
+  color: white;
+}
+
+.follower:hover {
+  color: yellow;
+  text-decoration: underline;
+}

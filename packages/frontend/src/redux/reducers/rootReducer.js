@@ -1,12 +1,14 @@
 import { combineReducers } from "redux";
+import follow from "./follow";
 import posts from "./post";
 import test from "./test";
 import user from "./user";
 
 const rootReducer = combineReducers({
   countValue: test,
-  loggedInUser: user,
-  posts: posts
+  user: user,
+  posts: posts,
+  followers: follow
 });
 
 export default rootReducer;

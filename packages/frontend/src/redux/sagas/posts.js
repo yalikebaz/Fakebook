@@ -30,7 +30,7 @@ export function* watchGetPosts() {
 // Adding a new user post to DB
 function* addNewUserPost(action) {
   try {
-    const userId = store.getState().loggedInUser.sub;
+    const userId = store.getState().user.sub;
     const response = yield call(
       axios.post,
       `http://localhost:3001/posts/${userId}`,
@@ -52,7 +52,7 @@ export function* addPost() {
 function* deleteUserPost(action) {
   try {
     yield call(axios.delete, `http://localhost:3001/posts/${action.payload}`);
-    const userId = store.getState().loggedInUser.sub;
+    const userId = store.getState().user.sub;
     yield put(getPosts(userId));
   } catch (error) {
     console.log(error);
@@ -69,7 +69,7 @@ function* editUserPost(action) {
       title: action.payload.title,
       body: action.payload.body
     });
-    const userId = store.getState().loggedInUser.sub;
+    const userId = store.getState().user.sub;
     yield put(getPosts(userId));
   } catch (error) {
     console.log(error);
