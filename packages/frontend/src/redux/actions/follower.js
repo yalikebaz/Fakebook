@@ -1,17 +1,17 @@
-export const GET_FOLLOWER_DB = "GET_FOLLOWERS_DB";
-export const STORE_FOLLOWERS = "STORE_FOLLOWERS";
+export const GET_FOLLOW_DATA_DB = "GET_FOLLOW_DATA_DB";
+export const STORE_FOLLOW_DATA = "STORE_FOLLOW_DATA";
 
-export const getFollowers = user_id => {
+export const getFollowData = user_id => {
   return {
-    type: GET_FOLLOWER_DB,
+    type: GET_FOLLOW_DATA_DB,
     payload: user_id
   };
 };
 
 // !Dispatched by saga
-export const storeFollowers = followers => {
+export const storeFollowData = followData => {
   return {
-    type: STORE_FOLLOWERS,
-    payload: followers
+    type: STORE_FOLLOW_DATA,
+    payload: followData
   };
 };

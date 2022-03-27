@@ -3,15 +3,45 @@ import { connection } from "../server.js";
 
 const router = express.Router();
 
-// Get follower ids by user id
-router.get("/:user_id", (req, res) => {
+// Get following (user is following) by user id
+router.get("/:user_id/following", (req, res) => {
   try {
     connection.query(
-      // `SELECT is_following FROM followers WHERE user_id = '${req.params.user_id}';`,
       `SELECT followers.user_id, followers.is_following, users.name 
       FROM users
       INNER JOIN followers ON users.id=followers.is_following
       WHERE followers.user_id = '${req.params.user_id}';`,
+      (err, results) => {
+        if (err) res.status(400).send(err);
+
+        let following = [];
+        results.map(field => {
+          following.push(field.name);
+        });
+
+        res.status(200).send(following);
+      }
+    );
+  } catch (error) {
+    console.log("error", error);
+    res.send(error);
+  }
+});
+
+// Get followers (user is followed by) by user id
+router.get("/:user_id/followers", (req, res) => {
+  try {
+    connection.query(
+      // `SELECT followers.user_id, followers.is_following, users.name
+      // FROM users
+      // INNER JOIN followers ON users.id=followers.is_following
+      // WHERE followers.user_id = '${req.params.user_id}';`,
+
+      `SELECT followers.user_id, followers.is_following, users.name
+       FROM users
+       INNER JOIN followers ON users.id=followers.user_id
+       WHERE followers.is_following = 'auth0|621b1b6417a284006ab63d6e';`,
+
       (err, results) => {
         if (err) res.status(400).send(err);
 
@@ -29,29 +59,8 @@ router.get("/:user_id", (req, res) => {
   }
 });
 
-// Get follower name by follower id
-router.get("/:follower_id", (req, res) => {
-  try {
-    connection.query(
-      `SELECT is_following FROM followers WHERE user_id = '${req.params.user_id}';`,
-      (err, results) => {
-        if (err) res.status(400).send(err);
-
-        let followers = [];
-        results.map(field => {
-          followers.push(field.is_following);
-        });
-
-        res.status(200).send(followers);
-      }
-    );
-  } catch (error) {
-    console.log("error", error);
-    res.send(error);
-  }
-});
-
 // Add followers by user id, and id of the user to follow
+// TODO still need to use this endpoint
 router.post("/:user_id", (req, res) => {
   try {
     connection.query(

@@ -1,8 +1,8 @@
-import { STORE_FOLLOWERS } from "../actions/follower";
+import { STORE_FOLLOW_DATA } from "../actions/follower";
 
 const follow = (state = [], action) => {
   switch (action.type) {
-    case STORE_FOLLOWERS:
+    case STORE_FOLLOW_DATA:
       return action.payload;
     default:
       return state;

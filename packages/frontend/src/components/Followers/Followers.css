@@ -1,5 +1,6 @@
 .followerContainer {
   width: 200px;
+  margin-bottom: 30px;
   height: fit-content;
   background-color: #12a1dd;
   border-radius: 5px;

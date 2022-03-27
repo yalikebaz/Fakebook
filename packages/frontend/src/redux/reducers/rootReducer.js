@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   countValue: test,
   user: user,
   posts: posts,
-  followers: follow
+  followData: follow
 });
 
 export default rootReducer;
