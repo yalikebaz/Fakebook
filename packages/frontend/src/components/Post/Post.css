@@ -2,23 +2,32 @@
   position: relative;
   height: fit-content;
   width: 600px;
-  background-color: lightblue;
-  border: 1px solid black;
+  background-color: #12a1dd;
+  box-shadow: 10px 8px lightblue;
+  color: white;
   border-radius: 5px;
-  margin: 10px;
-  padding: 0 15px;
+  margin: 20px 10px;
+  padding: 10px 15px;
+}
+
+.postTime {
+  font-size: 12px;
+}
+
+.poster {
+  font-weight: bold;
 }
 
 .deletePost {
   position: absolute;
   right: 0;
-  margin: 10px 10px 0 0;
+  margin: 3px 10px 0 0;
 }
 
 .editPost {
   position: absolute;
   right: 70px;
-  margin: 10px 0 0 0;
+  margin: 3px 0 0 0;
 }
 
 .title {

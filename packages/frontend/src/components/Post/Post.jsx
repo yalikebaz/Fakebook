@@ -16,6 +16,9 @@ const Post = ({ postContents }) => {
   const firstName =
     user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);
 
+  let time = new Date(postContents.time);
+  time = time.toString().slice(0, 24);
+
   const onDeletePost = id => {
     dispatch(deletePost(id));
   };
@@ -39,8 +42,14 @@ const Post = ({ postContents }) => {
           {editing ? "Stop editing" : "Edit"}
         </Button>
       </div>
-      <p>{!isLoading && firstName}</p>
+      {!isLoading && (
+        <>
+          <p className="poster">{firstName}</p>
+          <p className="postTime">{time}</p>
+        </>
+      )}
       <hr />
+
       {editing ? (
         <>
           <div className="title">

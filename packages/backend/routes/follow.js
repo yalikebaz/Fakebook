@@ -40,7 +40,7 @@ router.get("/:user_id/followers", (req, res) => {
       `SELECT followers.user_id, followers.is_following, users.name
        FROM users
        INNER JOIN followers ON users.id=followers.user_id
-       WHERE followers.is_following = 'auth0|621b1b6417a284006ab63d6e';`,
+       WHERE followers.is_following = '${req.params.user_id}';`,
 
       (err, results) => {
         if (err) res.status(400).send(err);
