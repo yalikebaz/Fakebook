@@ -9,6 +9,7 @@ import { useDispatch } from "react-redux";
 import { checkUser } from "./redux/actions/user";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getPosts } from "./redux/actions/post";
+import Protected from "./components/Protected";
 
 function App() {
   const { isLoading, user } = useAuth0();
@@ -28,8 +29,22 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/timeline" element={<Timeline />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/timeline"
+              element={
+                <Protected>
+                  <Timeline />
+                </Protected>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Protected>
+                  <Profile />
+                </Protected>
+              }
+            />
           </Routes>
         </Container>
       </BrowserRouter>
