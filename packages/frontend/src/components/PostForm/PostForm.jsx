@@ -1,13 +1,15 @@
 import Button from "../Button/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./PostForm.css";
 import { useState } from "react";
 import { addNewPost } from "../../redux/actions/post";
+import dayjs from "dayjs";
 
 const PostForm = () => {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState();
-  const [body, setBody] = useState();
+  const user = useSelector(state => state.user);
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
   const [contentError, setContentError] = useState(false);
 
   const handleSubmit = e => {
@@ -23,10 +25,16 @@ const PostForm = () => {
       return;
     }
 
+    let time = dayjs(Date()).format("YYYY-MM-DD HH:mm:ss");
+
     const postContents = {
       title,
-      body
+      body,
+      time,
+      poster: user.sub
     };
+    setBody("");
+    setTitle("");
     dispatch(addNewPost(postContents));
   };
 
@@ -34,12 +42,14 @@ const PostForm = () => {
     <form className="formWrapper">
       <input
         onChange={e => setTitle(e.target.value)}
+        value={title}
         type="text"
         placeholder="Name your post"
         className="postName"
       />
       <textarea
         onChange={e => setBody(e.target.value)}
+        value={body}
         rows="4"
         cols="40"
         placeholder="What do you want to share?"

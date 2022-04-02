@@ -13,6 +13,10 @@ function* checkUserDB(action) {
     }
 
     // If user isn't in store already, make the API call
+    let firstName =
+      action.payload.nickname.charAt(0).toUpperCase() +
+      action.payload.nickname.slice(1);
+
     yield call(axios.post, "http://localhost:3001/login", {
       id: action.payload.sub,
       name: action.payload.nickname
@@ -20,7 +24,7 @@ function* checkUserDB(action) {
 
     // If user isnt in store already, add them
     // This avoids redundantly updating the store (e.g. on user navigation to other tabs)
-    yield put(storeUser(action.payload));
+    yield put(storeUser({ ...action.payload, nickname: firstName }));
   } catch (error) {
     console.log(error);
   }

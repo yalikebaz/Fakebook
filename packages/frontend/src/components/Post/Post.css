@@ -21,13 +21,14 @@
 .deletePost {
   position: absolute;
   right: 0;
-  margin: 3px 10px 0 0;
+  top: 10px;
+  margin: 0px 10px 0 0;
 }
 
 .editPost {
   position: absolute;
   right: 70px;
-  margin: 3px 0 0 0;
+  top: 10px;
 }
 
 .title {

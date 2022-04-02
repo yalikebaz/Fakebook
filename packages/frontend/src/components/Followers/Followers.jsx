@@ -20,7 +20,7 @@ const Followers = () => {
         <h2>Following</h2>
         {following &&
           following.map((follower, i) => (
-            <a key={i} className="follower" href="#">
+            <a key={i} className="follower" href="/#/">
               {follower}
             </a>
           ))}
@@ -29,7 +29,7 @@ const Followers = () => {
         <h2>Followers</h2>
         {followers &&
           followers.map((follower, i) => (
-            <a key={i} className="follower" href="#">
+            <a key={i} className="follower" href="/#/">
               {follower}
             </a>
           ))}

@@ -1,5 +1,7 @@
 nav {
   background-color: #12a1dd;
+  z-index: 1;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   height: 50px;
   width: 100vw;
   position: fixed;
@@ -16,7 +18,7 @@ nav {
   margin: 50px;
 }
 
-.active{
+.active {
   color: yellow;
   text-decoration: none;
   margin-left: 70px;

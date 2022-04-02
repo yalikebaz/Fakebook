@@ -3,7 +3,7 @@ import { connection } from "../server.js";
 
 const router = express.Router();
 
-// Get posts by user id
+// Get user posts by user id
 router.get("/:user_id", (req, res) => {
   try {
     connection.query(
@@ -19,22 +19,47 @@ router.get("/:user_id", (req, res) => {
   }
 });
 
-// Submit post to user id
-router.post("/:user_id", (req, res) => {
-  const { title, body } = req.body;
+// Get following's posts by user id
+router.get("/feed/:user_id", (req, res) => {
   try {
     connection.query(
-      `INSERT INTO fakebook.posts (title, body, poster) VALUES ('${title}', '${body}', '${req.params.user_id}')`,
+      `SELECT posts.id, posts.poster, users.name, posts.title, posts.body, posts.time
+       FROM posts
+       INNER JOIN followers
+       ON posts.poster=followers.is_following
+       INNER JOIN users
+       ON posts.poster=users.id
+       WHERE followers.user_id='${req.params.user_id}'`,
+      (err, results) => {
+        if (err) res.status(400).send(err);
+        res.status(200).send(results);
+      }
+    );
+  } catch (error) {
+    console.log("error", error);
+    res.send(error);
+  }
+});
+
+// Submit post to user id
+router.post("/:user_id", (req, res) => {
+  const { title, body, time } = req.body;
+  try {
+    connection.query(
+      `INSERT INTO fakebook.posts (time, title, body, poster) VALUES ('${time}','${title}', '${body}', '${req.params.user_id}')`,
 
       (err, results) => {
         if (err) res.status(400).send(err);
-        res.status(200).json({
-          post_data: {
-            id: results.insertId,
-            title,
-            body
-          }
-        });
+        else {
+          res.status(200).json({
+            post_data: {
+              id: results.insertId,
+              time,
+              title,
+              body
+            }
+          });
+        }
       }
     );
   } catch (error) {

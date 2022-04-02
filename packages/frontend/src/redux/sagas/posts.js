@@ -6,7 +6,9 @@ import {
   DELETE_POST_DB,
   EDIT_POST_DB,
   getPosts,
+  GET_FEED_DB,
   GET_POSTS_DB,
+  storeFeed,
   storeNewPost,
   storePosts
 } from "../actions/post";
@@ -27,6 +29,23 @@ export function* watchGetPosts() {
   yield takeLatest(GET_POSTS_DB, getAllUserPosts);
 }
 
+// Getting posts from DB, and then dispatching action to store in redux store
+function* getUserFeed(action) {
+  try {
+    const response = yield call(
+      axios.get,
+      `http://localhost:3001/posts/feed/${action.payload}`
+    );
+
+    yield put(storeFeed(response.data));
+  } catch (error) {
+    console.log(error);
+  }
+}
+export function* getFeed() {
+  yield takeLatest(GET_FEED_DB, getUserFeed);
+}
+
 // Adding a new user post to DB
 function* addNewUserPost(action) {
   try {
@@ -36,10 +55,16 @@ function* addNewUserPost(action) {
       `http://localhost:3001/posts/${userId}`,
       {
         title: action.payload.title,
-        body: action.payload.body
+        body: action.payload.body,
+        time: action.payload.time
       }
     );
-    yield put(storeNewPost(response.data.post_data));
+    yield put(
+      storeNewPost({
+        ...response.data.post_data,
+        poster: action.payload.poster
+      })
+    );
   } catch (error) {
     console.log(error);
   }
