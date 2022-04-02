@@ -1,4 +1,9 @@
-.followerContainer {
+.followContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardContainer {
   width: 200px;
   margin-bottom: 30px;
   height: fit-content;
@@ -9,14 +14,14 @@
   color: white;
 }
 
-.follower {
+.follow {
   display: block;
   width: fit-content;
   text-decoration: none;
   color: white;
 }
 
-.follower:hover {
+.follow:hover {
   color: yellow;
   text-decoration: underline;
 }

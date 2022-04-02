@@ -1,0 +1,11 @@
+.profileContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.leftContainer {
+  display: flex;
+  flex-direction: column;
+}
+

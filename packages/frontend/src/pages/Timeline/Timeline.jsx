@@ -16,8 +16,6 @@ const Timeline = () => {
     firstName = user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);
   }
 
-  //TODO I think there is stil a place here for useeffect: to get posts again! in case posts were added from profile (and we dont want to refresh to get them?) not entirely sure... would profile posts trigger the app useeffect?
-
   // Gets the user's feed
   useEffect(() => {
     if (user) {
@@ -28,11 +26,7 @@ const Timeline = () => {
   // Concatenates user's posts with their feed into 1 array: allPosts, sorted by time
   useEffect(() => {
     let x = userPosts.concat(feed);
-    // TODO figure out wtf is happening with loaders/spinners/conditionals??
-    // TODO fetching in app vs fetching here??
-
     x.sort((a, b) => (a.time > b.time ? 1 : b.time > a.time ? -1 : 0));
-
     setAllPosts(x);
   }, [feed, userPosts]);
 
@@ -44,7 +38,7 @@ const Timeline = () => {
       </section>
 
       <section>
-        <h2>Posts</h2>
+        <h2>The latest news from you and the people you follow...</h2>
         {allPosts &&
           allPosts.map(post => <Post key={post.id} postContents={post} />)}
       </section>

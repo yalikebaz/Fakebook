@@ -15,26 +15,26 @@ const Followers = () => {
   }, [user, dispatch]);
 
   return (
-    <>
-      <section className="followerContainer">
+    <div className="followContainer">
+      <section className="cardContainer">
         <h2>Following</h2>
         {following &&
           following.map((follower, i) => (
-            <a key={i} className="follower" href="/#/">
+            <a key={i} className="follow" href="/#/">
               {follower}
             </a>
           ))}
       </section>
-      <section className="followerContainer">
+      <section className="cardContainer">
         <h2>Followers</h2>
         {followers &&
           followers.map((follower, i) => (
-            <a key={i} className="follower" href="/#/">
+            <a key={i} className="follow" href="/#/">
               {follower}
             </a>
           ))}
       </section>
-    </>
+    </div>
   );
 };
 
