@@ -1,4 +1,4 @@
-.followContainer {
+.connectionPageContainer {
   display: flex;
   flex-direction: column;
 }
@@ -14,7 +14,7 @@
   color: white;
 }
 
-.follow {
+.connection {
   display: block;
   width: fit-content;
   text-decoration: none;

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import Followers from "../../components/Followers/Followers";
+import Connections from "../../components/Connections/Connections";
 import Post from "../../components/Post/Post";
 import PostForm from "../../components/PostForm/PostForm";
 import "./Profile.css";
@@ -19,7 +19,7 @@ const Profile = () => {
             return <Post key={post.id} postContents={post} />;
           })}
         </div>
-        <Followers />
+        <Connections />
       </div>
     </>
   );
