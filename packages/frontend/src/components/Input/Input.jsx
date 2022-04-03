@@ -1,6 +1,6 @@
 import "./Input.css";
 
-const Input = ({ onChange, placeholder, block, value }) => {
+const Input = ({ search, onChange, placeholder, block, value }) => {
   const blockClass = block ? "block" : "";
 
   return (
@@ -8,8 +8,8 @@ const Input = ({ onChange, placeholder, block, value }) => {
       <input
         placeholder={placeholder}
         onChange={onChange}
-        type="text"
-        className={`${blockClass} input`}
+        type={search ? "search" : "text"}
+        className={`${blockClass}`}
         value={value}
       />
     </>

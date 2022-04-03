@@ -10,6 +10,7 @@ import { checkUser } from "./redux/actions/user";
 import { useAuth0 } from "@auth0/auth0-react";
 import { getPosts } from "./redux/actions/post";
 import Protected from "./components/Protected";
+import Connect from "./pages/Connect/Connect";
 
 function App() {
   const { isLoading, user } = useAuth0();
@@ -42,6 +43,14 @@ function App() {
               element={
                 <Protected>
                   <Profile />
+                </Protected>
+              }
+            />
+            <Route
+              path="/connect"
+              element={
+                <Protected>
+                  <Connect />
                 </Protected>
               }
             />

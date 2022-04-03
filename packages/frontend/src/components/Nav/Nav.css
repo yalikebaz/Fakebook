@@ -8,6 +8,7 @@ nav {
   top: 0;
   left: 0;
   display: flex;
+  justify-content: space-around;
   align-items: center;
   padding: 0 20px;
   font-size: 20px;
@@ -21,13 +22,11 @@ nav {
 .active {
   color: yellow;
   text-decoration: none;
-  margin-left: 70px;
 }
 
 .link {
   color: rgb(238, 238, 222);
   text-decoration: none;
-  margin-left: 70px;
 }
 
 .link:hover {
@@ -35,7 +34,15 @@ nav {
   text-decoration: underline;
 }
 
-.logout {
-  position: absolute;
-  right: 80px;
+nav p {
+  color: yellow;
+  font-size: 14px;
+  margin: 7px 0;
+}
+
+.logoutContainer{
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
 }

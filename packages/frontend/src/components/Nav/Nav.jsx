@@ -3,9 +3,11 @@ import "./Nav.css";
 import fakebook from "../../../src/assets/fakebook_white.png";
 import { useAuth0 } from "@auth0/auth0-react";
 import Button from "../Button/Button";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
   const { logout } = useAuth0();
+  const currentUser = useSelector(state => state.user);
 
   return (
     <>
@@ -23,8 +25,17 @@ const Nav = () => {
         >
           Profile
         </NavLink>
-        <div className="logout" onClick={logout}>
-          <Button>Logout</Button>
+        <NavLink
+          to={"/connect"}
+          className={({ isActive }) => (isActive ? "active " : "link")}
+        >
+          Connect
+        </NavLink>
+        <div className="logoutContainer">
+          <p>{`Logged in as ${currentUser?.nickname}`}</p>
+          <div className="logout" onClick={logout}>
+            <Button>Logout</Button>
+          </div>
         </div>
       </nav>
     </>

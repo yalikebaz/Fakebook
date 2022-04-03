@@ -4,6 +4,7 @@ import "./PostForm.css";
 import { useState } from "react";
 import { addNewPost } from "../../redux/actions/post";
 import dayjs from "dayjs";
+import Input from "../Input/Input";
 
 const PostForm = () => {
   const dispatch = useDispatch();
@@ -40,12 +41,10 @@ const PostForm = () => {
 
   return (
     <form className="formWrapper">
-      <input
+      <Input
         onChange={e => setTitle(e.target.value)}
         value={title}
-        type="text"
         placeholder="Name your post"
-        className="postName"
       />
       <textarea
         onChange={e => setBody(e.target.value)}

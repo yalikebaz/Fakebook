@@ -4,23 +4,11 @@
   width: 400px;
 }
 
-
-input {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-}
-
-.postName {
-  width: 200px;
-  border-radius: 5px;
-  border: 1px solid rgb(133, 133, 133);
-  padding: 5px;
-}
-
 textarea {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   margin: 10px 0;
-  border-radius: 5px;
-  padding: 5px;
+  border-radius: 15px;
+  padding: 10px;
 }
 
 .bottomRow{
