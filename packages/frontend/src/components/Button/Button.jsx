@@ -1,7 +1,11 @@
 import "./Button.css";
 
-const Button = ({ children, onClick }) => {
-  return <button onClick={onClick}>{children}</button>;
+const Button = ({ block, children, onClick }) => {
+  return (
+    <button className={block && "block"} onClick={onClick}>
+      {children}
+    </button>
+  );
 };
 
 export default Button;

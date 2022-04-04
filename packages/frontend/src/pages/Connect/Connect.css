@@ -1,0 +1,24 @@
+.userContainer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  height: fit-content;
+  width: 200px;
+  padding: 15px;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid rgb(133, 133, 133);
+}
+
+.user {
+  text-decoration: none;
+  color: black;
+  width: fit-content;
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.user:hover {
+  color: blue;
+  text-decoration: underline;
+}

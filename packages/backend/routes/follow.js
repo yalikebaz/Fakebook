@@ -64,7 +64,7 @@ router.get("/:user_id/followers", (req, res) => {
 router.post("/:user_id", (req, res) => {
   try {
     connection.query(
-      //todo replace hard code string
+      //TODO replace hard code string
       `INSERT INTO followers (user_id, is_following) VALUES ('${req.params.user_id}','auth0|622e40f528e41500686fcbbf');`,
       (err, results) => {
         if (err) res.status(400).send(err);

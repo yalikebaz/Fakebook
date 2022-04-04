@@ -1,7 +1,9 @@
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Input from "../../components/Input/Input";
+import "./Connect.css";
 
 const Connect = () => {
   const currentUser = useSelector(state => state.user);
@@ -42,9 +44,16 @@ const Connect = () => {
         placeholder="Search for a user..."
         block
       />
-      {filteredUsers.map((user, i) => {
-        return <p key={i}>{user.name}</p>;
-      })}
+      <div className="userContainer">
+        {filteredUsers.map((user, i) => {
+          return (
+            <NavLink key={i} to={`/connect/${user.id}`} className="user">
+              {user.name}
+            </NavLink>
+          );
+        })}
+      </div>
+      <h2>Click a user's name to view their profile</h2>
     </>
   );
 };

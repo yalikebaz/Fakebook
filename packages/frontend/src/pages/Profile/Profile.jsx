@@ -9,7 +9,6 @@ const Profile = () => {
   const userPosts = useSelector(state => state.posts);
 
   return (
-    //TODO remove the action and saga for get all users
     <>
       <h1>{`Hi, ${user?.nickname}`}</h1>
       <div className="profileContainer">

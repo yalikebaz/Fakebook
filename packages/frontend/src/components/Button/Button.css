@@ -7,12 +7,16 @@ button {
   font-weight: 600;
   color: white;
   border: 1px solid white;
-  background-color:#12a1dd;
+  background-color: #12a1dd;
   padding: 3px 9px;
   cursor: pointer;
 }
 
-button:hover{
+.block {
+  display: block;
+}
+
+button:hover {
   background-color: yellow;
   color: black;
 }

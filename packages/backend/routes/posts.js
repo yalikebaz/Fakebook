@@ -7,7 +7,12 @@ const router = express.Router();
 router.get("/:user_id", (req, res) => {
   try {
     connection.query(
-      `SELECT * FROM fakebook.posts WHERE poster='${req.params.user_id}';`,
+      `
+      SELECT users.id AS 'userID', users.name, posts.id AS 'postId', posts.title, posts.body, posts.time FROM users
+      INNER JOIN posts
+      ON users.id=posts.poster
+      WHERE users.id='${req.params.user_id}'
+      `,
       (err, results) => {
         if (err) res.status(400).send(err);
         res.status(200).send(results);
