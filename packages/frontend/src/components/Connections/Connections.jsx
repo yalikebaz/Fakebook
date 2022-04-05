@@ -1,4 +1,5 @@
 import "./Connections.css";
+import { NavLink } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFollowData } from "../../redux/actions/follower";
@@ -20,18 +21,26 @@ const Connections = () => {
         <h2>Following</h2>
         {following &&
           following.map((follower, i) => (
-            <a key={i} className="connection" href="/#/">
-              {follower}
-            </a>
+            <NavLink
+              key={i}
+              to={`/connect/${follower.id}`}
+              className="connection"
+            >
+              {follower.name}
+            </NavLink>
           ))}
       </section>
       <section className="cardContainer">
         <h2>Followers</h2>
         {followers &&
           followers.map((follower, i) => (
-            <a key={i} className="connection" href="/#/">
-              {follower}
-            </a>
+            <NavLink
+              key={i}
+              to={`/connect/${follower.id}`}
+              className="connection"
+            >
+              {follower.name}
+            </NavLink>
           ))}
       </section>
     </div>

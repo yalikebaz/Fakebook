@@ -16,7 +16,7 @@ router.get("/:user_id/following", (req, res) => {
 
         let following = [];
         results.map(field => {
-          following.push(field.name);
+          following.push({ name: field.name, id: field.is_following });
         });
 
         res.status(200).send(following);
@@ -32,11 +32,6 @@ router.get("/:user_id/following", (req, res) => {
 router.get("/:user_id/followers", (req, res) => {
   try {
     connection.query(
-      // `SELECT followers.user_id, followers.is_following, users.name
-      // FROM users
-      // INNER JOIN followers ON users.id=followers.is_following
-      // WHERE followers.user_id = '${req.params.user_id}';`,
-
       `SELECT followers.user_id, followers.is_following, users.name
        FROM users
        INNER JOIN followers ON users.id=followers.user_id
@@ -47,7 +42,7 @@ router.get("/:user_id/followers", (req, res) => {
 
         let followers = [];
         results.map(field => {
-          followers.push(field.name);
+          followers.push({ name: field.name, id: field.user_id });
         });
 
         res.status(200).send(followers);

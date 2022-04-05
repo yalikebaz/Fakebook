@@ -44,14 +44,14 @@ const UserProfile = ({ user }) => {
 
   return (
     <div className="profile">
-      <Button onClick={onBack}>◁ Back to Connect page</Button>
+      <Button onClick={onBack}>◁ Back</Button>
       <h1>{`${name}'s profile`}</h1>
       <h2>{`${name}'s posts`}</h2>
       <Button block onClick={handleClick}>
         Follow User
       </Button>
       {userPosts.map(post => {
-        return <Post key={post.postId} postContents={post} />;
+        return <Post key={post.id} postContents={post} />;
       })}
     </div>
   );

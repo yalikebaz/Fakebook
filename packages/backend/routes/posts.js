@@ -8,7 +8,7 @@ router.get("/:user_id", (req, res) => {
   try {
     connection.query(
       `
-      SELECT users.id AS 'userID', users.name, posts.id AS 'postId', posts.title, posts.body, posts.time FROM users
+      SELECT users.id AS 'poster', users.name, posts.id, posts.title, posts.body, posts.time FROM users
       INNER JOIN posts
       ON users.id=posts.poster
       WHERE users.id='${req.params.user_id}'

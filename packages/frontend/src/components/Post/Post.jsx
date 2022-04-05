@@ -52,7 +52,6 @@ const Post = ({ postContents }) => {
   return (
     <div className="postContainer">
       <section>
-        {/* Only shows Edit and Delete buttons if the logged in user is the poster of the post  */}
         {isPoster() && (
           <>
             <div className="deletePost">
@@ -67,8 +66,6 @@ const Post = ({ postContents }) => {
             </div>
           </>
         )}
-        {/* <p className="poster">{getName()}</p> */}
-        {/* <p className="poster">{`name`}</p> */}
         <p className="poster">{getName()}</p>
         <p className="postTime">{time}</p>
         <hr />
