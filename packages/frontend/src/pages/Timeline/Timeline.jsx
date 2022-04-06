@@ -11,7 +11,6 @@ function Timeline() {
   const user = useSelector((state) => state.user);
   const feed = useSelector((state) => state.feed);
 
-  // TODO new posts dont add to the bottom
   let firstName;
   if (user) {
     firstName = user.nickname.charAt(0).toUpperCase() + user.nickname.slice(1);
@@ -19,17 +18,19 @@ function Timeline() {
 
   // Gets the user's feed
   useEffect(() => {
-    if (user) {
+    if (user.sub) {
       dispatch(getFeed(user.sub));
     }
   }, [user, dispatch]);
 
   // Concatenates user's posts with their feed into 1 array: allPosts, sorted by time
   useEffect(() => {
-    const x = userPosts.concat(feed);
+    const timeline = userPosts.concat(feed);
+    console.log('timeline b4 sort :>> ', timeline);
     // eslint-disable-next-line no-nested-ternary
-    x.sort((a, b) => (a.time > b.time ? 1 : b.time > a.time ? -1 : 0));
-    setAllPosts(x);
+    timeline.sort((a, b) => (a.time < b.time ? 1 : b.time < a.time ? -1 : 0));
+    console.log('timeline sorted :>> ', timeline);
+    setAllPosts(timeline);
   }, [feed, userPosts]);
 
   return (
