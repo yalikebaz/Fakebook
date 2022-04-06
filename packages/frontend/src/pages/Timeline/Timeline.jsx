@@ -26,10 +26,8 @@ function Timeline() {
   // Concatenates user's posts with their feed into 1 array: allPosts, sorted by time
   useEffect(() => {
     const timeline = userPosts.concat(feed);
-    console.log('timeline b4 sort :>> ', timeline);
     // eslint-disable-next-line no-nested-ternary
     timeline.sort((a, b) => (a.time < b.time ? 1 : b.time < a.time ? -1 : 0));
-    console.log('timeline sorted :>> ', timeline);
     setAllPosts(timeline);
   }, [feed, userPosts]);
 
