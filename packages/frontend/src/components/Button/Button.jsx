@@ -1,11 +1,12 @@
-import "./Button.css";
+import './Button.css';
+import React from 'react';
 
-const Button = ({ block, children, onClick }) => {
+function Button({ block, children, onClick }) {
   return (
-    <button className={block && "block"} onClick={onClick}>
+    <button className={block && 'block'} type="submit" onClick={onClick}>
       {children}
     </button>
   );
-};
+}
 
 export default Button;

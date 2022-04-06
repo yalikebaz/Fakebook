@@ -1,4 +1,4 @@
-import { STORE_FEED, STORE_NEW_POST, STORE_POSTS } from "../actions/post";
+import { STORE_FEED, STORE_NEW_POST, STORE_POSTS } from '../actions/post';
 
 const posts = (state = [], action) => {
   switch (action.type) {

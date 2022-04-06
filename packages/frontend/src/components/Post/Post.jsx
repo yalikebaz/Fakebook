@@ -1,16 +1,16 @@
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { deletePost, editPost } from "../../redux/actions/post";
-import Button from "../Button/Button";
-import Input from "../Input/Input";
-import "./Post.css";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { deletePost, editPost } from '../../redux/actions/post';
+import Button from '../Button/Button';
+import Input from '../Input/Input';
+import './Post.css';
 
-const Post = ({ postContents }) => {
+function Post({ postContents }) {
   const dispatch = useDispatch();
   const [editing, setEditing] = useState(false);
   const [title, setTitle] = useState(postContents.title);
   const [body, setBody] = useState(postContents.body);
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
 
   const getName = () => {
     let firstName;
@@ -20,6 +20,7 @@ const Post = ({ postContents }) => {
     } else {
       firstName = postContents.name;
     }
+    // eslint-disable-next-line no-unsafe-optional-chaining
     firstName = firstName?.charAt(0).toUpperCase() + firstName?.slice(1);
 
     return firstName;
@@ -28,11 +29,11 @@ const Post = ({ postContents }) => {
   let time = new Date(postContents.time);
   time = time.toString().slice(0, 24);
 
-  const onDeletePost = id => {
+  const onDeletePost = (id) => {
     dispatch(deletePost(id));
   };
 
-  const onEditPost = id => {
+  const onEditPost = (id) => {
     if (!editing) {
       setEditing(true);
     } else if (editing) {
@@ -61,7 +62,7 @@ const Post = ({ postContents }) => {
             </div>
             <div className="editPost">
               <Button onClick={() => onEditPost(postContents.id)}>
-                {editing ? "Stop editing" : "Edit"}
+                {editing ? 'Stop editing' : 'Edit'}
               </Button>
             </div>
           </>
@@ -77,13 +78,13 @@ const Post = ({ postContents }) => {
           <>
             <div className="title">
               <Input
-                onChange={e => setTitle(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 value={title}
                 block
               />
             </div>
             <textarea
-              onChange={e => setBody(e.target.value)}
+              onChange={(e) => setBody(e.target.value)}
               rows="4"
               cols="40"
               value={body}
@@ -98,6 +99,6 @@ const Post = ({ postContents }) => {
       </section>
     </div>
   );
-};
+}
 
 export default Post;

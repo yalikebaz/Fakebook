@@ -1,42 +1,68 @@
-import axios from "axios";
-import "./UserProfile.css";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Button from "../../components/Button/Button";
-import { useEffect, useState } from "react";
-import Post from "../../components/Post/Post";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import './UserProfile.css';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import Button from '../../components/Button/Button';
+import Post from '../../components/Post/Post';
+import { getFollowData } from '../../redux/actions/follower';
 
-const UserProfile = ({ user }) => {
-  //TODO name this page better cause it conflicts with Profile.jsx
-  let { user_id: userId } = useParams();
+function UserProfile() {
+  const { user_id: connectionId } = useParams();
   const navigate = useNavigate();
   const [userPosts, setUserPosts] = useState([]);
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
+  const [isFollowing, setIsFollowing] = useState(false);
+  const { following } = useSelector((state) => state.followData);
+  const { sub: loggedInUserId } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/posts/${userId}`
+          `http://localhost:3001/posts/${connectionId}`,
         );
         setUserPosts(response.data);
       } catch (error) {
-        console.log(error);
+        throw new Error();
       }
     };
     getUserData();
-  }, [userId]);
+  }, [connectionId]);
 
   useEffect(() => {
     if (userPosts.length === 0) {
       return;
     }
-    let firstName =
-      userPosts[0].name.charAt(0).toUpperCase() + userPosts[0].name.slice(1);
+    const firstName = userPosts[0].name.charAt(0).toUpperCase() + userPosts[0].name.slice(1);
     setName(firstName);
   }, [userPosts]);
 
-  const handleClick = () => {};
+  useEffect(() => {
+    if (!following) return;
+    const filterFollowing = following.filter((user) => user.id === connectionId);
+    // eslint-disable-next-line no-unused-expressions
+    filterFollowing.length > 0 ? setIsFollowing(true) : setIsFollowing(false);
+  }, [following]);
+
+  const toggleFollow = async () => {
+    if (!isFollowing) {
+      try {
+        await axios.post(`http://localhost:3001/follow/${loggedInUserId}/${connectionId}`);
+        dispatch(getFollowData(loggedInUserId));
+      } catch (error) {
+        throw new Error();
+      }
+    } else if (isFollowing) {
+      try {
+        await axios.delete(`http://localhost:3001/follow/${loggedInUserId}/${connectionId}`);
+        dispatch(getFollowData(loggedInUserId));
+      } catch (error) {
+        throw new Error();
+      }
+    }
+  };
 
   const onBack = () => {
     navigate(-1);
@@ -47,14 +73,14 @@ const UserProfile = ({ user }) => {
       <Button onClick={onBack}>◁ Back</Button>
       <h1>{`${name}'s profile`}</h1>
       <h2>{`${name}'s posts`}</h2>
-      <Button block onClick={handleClick}>
-        Follow User
+      <Button block onClick={toggleFollow}>
+        {isFollowing ? 'Unfollow User' : 'Follow user'}
       </Button>
-      {userPosts.map(post => {
-        return <Post key={post.id} postContents={post} />;
-      })}
+      {userPosts.map((post) => (
+        <Post key={post.id} postContents={post} />
+      ))}
     </div>
   );
-};
+}
 
 export default UserProfile;

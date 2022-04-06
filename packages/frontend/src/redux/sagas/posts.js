@@ -1,6 +1,6 @@
-import { put, call, takeLatest } from "redux-saga/effects";
-import axios from "axios";
-import { store } from "../../index.js";
+import { put, call, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
+import store from '../../index';
 import {
   ADD_NEW_POST_DB,
   DELETE_POST_DB,
@@ -10,19 +10,19 @@ import {
   GET_POSTS_DB,
   storeFeed,
   storeNewPost,
-  storePosts
-} from "../actions/post";
+  storePosts,
+} from '../actions/post';
 
 // Getting posts from DB, and then dispatching action to store in redux store
 function* getAllUserPosts(action) {
   try {
     const response = yield call(
       axios.get,
-      `http://localhost:3001/posts/${action.payload}`
+      `http://localhost:3001/posts/${action.payload}`,
     );
     yield put(storePosts(response.data));
   } catch (error) {
-    console.log(error);
+    throw new Error();
   }
 }
 export function* watchGetPosts() {
@@ -34,12 +34,12 @@ function* getUserFeed(action) {
   try {
     const response = yield call(
       axios.get,
-      `http://localhost:3001/posts/feed/${action.payload}`
+      `http://localhost:3001/posts/feed/${action.payload}`,
     );
 
     yield put(storeFeed(response.data));
   } catch (error) {
-    console.log(error);
+    throw new Error();
   }
 }
 export function* getFeed() {
@@ -56,17 +56,17 @@ function* addNewUserPost(action) {
       {
         title: action.payload.title,
         body: action.payload.body,
-        time: action.payload.time
-      }
+        time: action.payload.time,
+      },
     );
     yield put(
       storeNewPost({
         ...response.data.post_data,
-        poster: action.payload.poster
-      })
+        poster: action.payload.poster,
+      }),
     );
   } catch (error) {
-    console.log(error);
+    throw new Error();
   }
 }
 export function* addPost() {
@@ -80,7 +80,7 @@ function* deleteUserPost(action) {
     const userId = store.getState().user.sub;
     yield put(getPosts(userId));
   } catch (error) {
-    console.log(error);
+    throw new Error();
   }
 }
 export function* deletePost() {
@@ -92,12 +92,12 @@ function* editUserPost(action) {
   try {
     yield call(axios.put, `http://localhost:3001/posts/${action.payload.id}`, {
       title: action.payload.title,
-      body: action.payload.body
+      body: action.payload.body,
     });
     const userId = store.getState().user.sub;
     yield put(getPosts(userId));
   } catch (error) {
-    console.log(error);
+    throw new Error();
   }
 }
 export function* editPost() {

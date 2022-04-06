@@ -1,44 +1,43 @@
-import { NavLink } from "react-router-dom";
-import "./Nav.css";
-import fakebook from "../../../src/assets/fakebook_white.png";
-import { useAuth0 } from "@auth0/auth0-react";
-import Button from "../Button/Button";
-import { useSelector } from "react-redux";
+import { NavLink } from 'react-router-dom';
+import React from 'react';
+import './Nav.css';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useSelector } from 'react-redux';
+import fakebook from '../../assets/fakebook_white.png';
+import Button from '../Button/Button';
 
-const Nav = () => {
+function Nav() {
   const { logout } = useAuth0();
-  const currentUser = useSelector(state => state.user);
+  const currentUser = useSelector((state) => state.user);
 
   return (
-    <>
-      <nav>
-        <img className="fb" src={fakebook} alt="fakebook" />
-        <NavLink
-          to={"/timeline"}
-          className={({ isActive }) => (isActive ? "active " : "link")}
-        >
-          Timeline
-        </NavLink>
-        <NavLink
-          to={"/profile"}
-          className={({ isActive }) => (isActive ? "active " : "link")}
-        >
-          Profile
-        </NavLink>
-        <NavLink
-          to={"/connect"}
-          className={({ isActive }) => (isActive ? "active " : "link")}
-        >
-          Connect
-        </NavLink>
-        <div className="logoutContainer">
-          <p>{`Logged in as ${currentUser?.nickname}`}</p>
-          <div className="logout" onClick={logout}>
-            <Button>Logout</Button>
-          </div>
+    <nav>
+      <img className="fb" src={fakebook} alt="fakebook" />
+      <NavLink
+        to="/timeline"
+        className={({ isActive }) => (isActive ? 'active ' : 'link')}
+      >
+        Timeline
+      </NavLink>
+      <NavLink
+        to="/profile"
+        className={({ isActive }) => (isActive ? 'active ' : 'link')}
+      >
+        Profile
+      </NavLink>
+      <NavLink
+        to="/connect"
+        className={({ isActive }) => (isActive ? 'active ' : 'link')}
+      >
+        Connect
+      </NavLink>
+      <div className="logoutContainer">
+        <p>{`Logged in as ${currentUser?.nickname}`}</p>
+        <div className="logout">
+          <Button onClick={logout}>Logout</Button>
         </div>
-      </nav>
-    </>
+      </div>
+    </nav>
   );
-};
+}
 export default Nav;

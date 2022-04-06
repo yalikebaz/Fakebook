@@ -1,7 +1,9 @@
-import { all } from "redux-saga/effects";
-import { getUserFollowData } from "./follower";
-import { addPost, deletePost, editPost, getFeed, watchGetPosts } from "./posts";
-import watchUser from "./user";
+import { all } from 'redux-saga/effects';
+import { getUserFollowData } from './follower';
+import {
+  addPost, deletePost, editPost, getFeed, watchGetPosts,
+} from './posts';
+import watchUser from './user';
 
 function* rootSaga() {
   yield all([
@@ -11,7 +13,7 @@ function* rootSaga() {
     deletePost(),
     editPost(),
     getUserFollowData(),
-    getFeed()
+    getFeed(),
   ]);
 }
 

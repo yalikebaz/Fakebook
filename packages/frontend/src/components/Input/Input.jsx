@@ -1,19 +1,20 @@
-import "./Input.css";
+import './Input.css';
+import React from 'react';
 
-const Input = ({ search, onChange, placeholder, block, value }) => {
-  const blockClass = block ? "block" : "";
+function Input({
+  search, onChange, placeholder, block, value,
+}) {
+  const blockClass = block ? 'block' : '';
 
   return (
-    <>
-      <input
-        placeholder={placeholder}
-        onChange={onChange}
-        type={search ? "search" : "text"}
-        className={`${blockClass}`}
-        value={value}
-      />
-    </>
+    <input
+      placeholder={placeholder}
+      onChange={onChange}
+      type={search ? 'search' : 'text'}
+      className={`${blockClass}`}
+      value={value}
+    />
   );
-};
+}
 
 export default Input;

@@ -1,19 +1,19 @@
-import Button from "../Button/Button";
-import { useDispatch, useSelector } from "react-redux";
-import "./PostForm.css";
-import { useState } from "react";
-import { addNewPost } from "../../redux/actions/post";
-import dayjs from "dayjs";
-import Input from "../Input/Input";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import './PostForm.css';
+import dayjs from 'dayjs';
+import Button from '../Button/Button';
+import { addNewPost } from '../../redux/actions/post';
+import Input from '../Input/Input';
 
-const PostForm = () => {
+function PostForm() {
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+  const user = useSelector((state) => state.user);
+  const [title, setTitle] = useState('');
+  const [body, setBody] = useState('');
   const [contentError, setContentError] = useState(false);
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setContentError(false);
 
@@ -26,28 +26,28 @@ const PostForm = () => {
       return;
     }
 
-    let time = dayjs(Date()).format("YYYY-MM-DD HH:mm:ss");
+    const time = dayjs(Date()).format('YYYY-MM-DD HH:mm:ss');
 
     const postContents = {
       title,
       body,
       time,
-      poster: user.sub
+      poster: user.sub,
     };
-    setBody("");
-    setTitle("");
+    setBody('');
+    setTitle('');
     dispatch(addNewPost(postContents));
   };
 
   return (
     <form className="formWrapper">
       <Input
-        onChange={e => setTitle(e.target.value)}
+        onChange={(e) => setTitle(e.target.value)}
         value={title}
         placeholder="Name your post"
       />
       <textarea
-        onChange={e => setBody(e.target.value)}
+        onChange={(e) => setBody(e.target.value)}
         value={body}
         rows="4"
         cols="40"
@@ -63,6 +63,6 @@ const PostForm = () => {
       </div>
     </form>
   );
-};
+}
 
 export default PostForm;
