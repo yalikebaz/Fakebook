@@ -7,21 +7,21 @@
   width: 200px;
   margin-bottom: 30px;
   height: fit-content;
-  background-color: #12a1dd;
+  background-color: #2F3061;
+  box-shadow: 0 14px 50px -4px hsla(0,0%,0%,0.25);
   border-radius: 5px;
   padding: 10px;
-  box-shadow: 10px 8px lightblue;
-  color: white;
+  color: #FFFFFC;
 }
 
 .connection {
   display: block;
   width: fit-content;
   text-decoration: none;
-  color: white;
+  color: #FFFFFC;
 }
 
-.follow:hover {
+.connection:hover {
   color: yellow;
   text-decoration: underline;
 }

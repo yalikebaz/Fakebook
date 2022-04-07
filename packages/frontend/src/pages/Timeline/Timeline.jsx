@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
+import './Timeline.css';
 import React, { useEffect, useState } from 'react';
 import PostForm from '../../components/PostForm/PostForm';
 import Post from '../../components/Post/Post';
@@ -32,7 +33,7 @@ function Timeline() {
   }, [feed, userPosts]);
 
   return (
-    <>
+    <div className="timelineContainer">
       <section>
         <h1>
           {firstName}
@@ -46,7 +47,7 @@ function Timeline() {
         {allPosts
           && allPosts.map((post) => <Post key={post.id} postContents={post} />)}
       </section>
-    </>
+    </div>
   );
 }
 

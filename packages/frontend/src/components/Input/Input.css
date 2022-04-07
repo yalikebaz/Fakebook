@@ -5,7 +5,13 @@
 input {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   width: 200px;
-  border-radius: 15px;
-  border: 1px solid rgb(133, 133, 133);
-  padding: 10px;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #FFFFFC;
+  border: 2px solid #2f3061;
+  color:#343434;
+}
+
+::placeholder {
+  color: #343434
 }

@@ -5,9 +5,10 @@ button {
   align-self: flex-end;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 600;
-  color: white;
-  border: 1px solid white;
-  background-color: #12a1dd;
+  color: #FFFFFC;
+  border-radius: 5px;
+  border: 1px solid #FFFFFC;
+  background-color: #5F5980;
   padding: 3px 9px;
   cursor: pointer;
 }
@@ -17,6 +18,5 @@ button {
 }
 
 button:hover {
-  background-color: yellow;
-  color: black;
+  background-color: #2F3061;
 }
