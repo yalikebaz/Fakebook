@@ -34,7 +34,7 @@ function Nav() {
       <div className="logoutContainer">
         <p>{`Logged in as ${currentUser?.nickname}`}</p>
         <div className="logout">
-          <Button onClick={logout}>Logout</Button>
+          <Button onClick={logout({ returnTo: `${window.location.origin}/` })}>Logout</Button>
         </div>
       </div>
     </nav>
