@@ -1,6 +1,8 @@
 import './App.css';
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter, Routes, Route, Navigate,
+} from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import Login from './pages/Login/Login';
@@ -15,7 +17,7 @@ import UserProfile from './pages/UserProfile/UserProfile';
 import { getFollowData } from './redux/actions/follower';
 
 function App() {
-  const { isLoading, user } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
   const dispatch = useDispatch();
 
   // Retrieve/store user, post & follow details at the top level
@@ -32,6 +34,10 @@ function App() {
       <Container>
         <Routes>
           <Route path="/" element={<Login />} />
+          {isAuthenticated && (
+          <Route path="/" element={<Navigate replace to="/timeline" />} />
+
+          )}
           <Route
             path="/timeline"
             element={(
