@@ -10,17 +10,15 @@ function Profile() {
   const userPosts = useSelector((state) => state.posts);
 
   return (
-    <>
-      <h1>{`Hi, ${user?.nickname}`}</h1>
-      <div className="profileContainer">
-        <div className="leftContainer">
-          <PostForm />
-          <h2>Your posts</h2>
-          {userPosts.map((post) => <Post key={post.id} postContents={post} />)}
-        </div>
-        <Connections />
+    <div className="profileContainer">
+      <div className="leftContainer">
+        <h1>{`Hi, ${user?.nickname}`}</h1>
+        <PostForm />
+        <h2>Your posts</h2>
+        {userPosts.map((post) => <Post key={post.id} postContents={post} />)}
       </div>
-    </>
+      <Connections />
+    </div>
   );
 }
 
