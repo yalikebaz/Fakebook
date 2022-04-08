@@ -4,11 +4,9 @@ import postRouter from "./routes/posts.js";
 import followRouter from "./routes/follow.js";
 import usersRouter from "./routes/users.js";
 import mysql from "mysql2";
-import colors from "colors";
 import dotenv from "dotenv";
 import cors from "cors";
 
-colors.enable();
 dotenv.config();
 const PORT = 3001;
 
@@ -26,7 +24,7 @@ connection.connect(error => {
       "Database connection error (is it on?): ".red + error.message.red
     );
   }
-  console.log("Connected to the MySQL server!".blue.underline);
+  console.log("Connected to the MySQL server!");
 });
 
 const app = express();
