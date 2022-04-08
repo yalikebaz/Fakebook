@@ -6,6 +6,9 @@ On the frontend its a React application, and authorization is done with auth0. B
 
 Here are some sample logins, but you can also create your own account on the sign in screen!
 
-Logins:
-john@john.com, john
-test@test.com, test
+## Logins
+username: john@john.com
+password: john
+
+username: test@test.com
+password: test
