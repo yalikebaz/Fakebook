@@ -10,6 +10,7 @@ import cors from "cors";
 
 colors.enable();
 dotenv.config();
+const PORT = 3001;
 
 // Connecting to mySql
 export const connection = mysql.createConnection({
@@ -38,6 +39,6 @@ app.use("/posts", postRouter);
 app.use("/follow", followRouter);
 app.use("/users", usersRouter);
 
-app.listen(3001, () => {
-  console.log("Server listening at 3001".blue.underline);
+app.listen(process.env.PORT || PORT, () => {
+  console.log(`Server listening at ${PORT}`);
 });

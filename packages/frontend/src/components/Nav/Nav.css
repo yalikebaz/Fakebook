@@ -19,7 +19,7 @@ nav {
   margin: 50px;
 }
 
-.active {
+nav .active {
   color: yellow;
   text-decoration: none;
 }

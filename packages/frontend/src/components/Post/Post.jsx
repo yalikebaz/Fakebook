@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deletePost, editPost } from '../../redux/actions/post';
 import Button from '../Button/Button';
@@ -50,6 +51,14 @@ function Post({ postContents }) {
     return false;
   };
 
+  // If the user clicks on their own name take them to their profile
+  const getLink = () => {
+    if (postContents.poster === user.sub) {
+      return '/profile';
+    }
+    return `/connect/${postContents.poster}`;
+  };
+
   return (
     <div className="postContainer">
       <section>
@@ -67,7 +76,12 @@ function Post({ postContents }) {
             </div>
           </>
         )}
-        <p className="poster">{getName()}</p>
+        <NavLink
+          to={getLink()}
+          className="poster"
+        >
+          {getName()}
+        </NavLink>
         <p className="postTime">{time}</p>
         <hr />
       </section>

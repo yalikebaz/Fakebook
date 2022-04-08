@@ -16,7 +16,7 @@ function* checkUserDB(action) {
     const firstName = action.payload.nickname.charAt(0).toUpperCase()
       + action.payload.nickname.slice(1);
 
-    yield call(axios.post, 'http://localhost:3001/login', {
+    yield call(axios.post, `${process.env.REACT_APP_HOST}/login`, {
       id: action.payload.sub,
       name: action.payload.nickname,
     });

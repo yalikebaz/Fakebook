@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
+import ScrollToTop from './components/ScrollToTop';
 import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Timeline from './pages/Timeline/Timeline';
@@ -31,6 +32,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Container>
         <Routes>
           <Route path="/" element={<Login />} />

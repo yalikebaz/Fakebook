@@ -18,7 +18,7 @@ function* getAllUserPosts(action) {
   try {
     const response = yield call(
       axios.get,
-      `http://localhost:3001/posts/${action.payload}`,
+      `${process.env.REACT_APP_HOST}/posts/${action.payload}`,
     );
     yield put(storePosts(response.data));
   } catch (error) {
@@ -34,7 +34,7 @@ function* getUserFeed(action) {
   try {
     const response = yield call(
       axios.get,
-      `http://localhost:3001/posts/feed/${action.payload}`,
+      `${process.env.REACT_APP_HOST}/posts/feed/${action.payload}`,
     );
 
     yield put(storeFeed(response.data));
@@ -52,7 +52,7 @@ function* addNewUserPost(action) {
     const userId = store.getState().user.sub;
     const response = yield call(
       axios.post,
-      `http://localhost:3001/posts/${userId}`,
+      `${process.env.REACT_APP_HOST}/posts/${userId}`,
       {
         title: action.payload.title,
         body: action.payload.body,
@@ -76,7 +76,7 @@ export function* addPost() {
 // Deleting a post
 function* deleteUserPost(action) {
   try {
-    yield call(axios.delete, `http://localhost:3001/posts/${action.payload}`);
+    yield call(axios.delete, `${process.env.REACT_APP_HOST}/posts/${action.payload}`);
     const userId = store.getState().user.sub;
     yield put(getPosts(userId));
   } catch (error) {
@@ -90,7 +90,7 @@ export function* deletePost() {
 // Editing a post
 function* editUserPost(action) {
   try {
-    yield call(axios.put, `http://localhost:3001/posts/${action.payload.id}`, {
+    yield call(axios.put, `${process.env.REACT_APP_HOST}/posts/${action.payload.id}`, {
       title: action.payload.title,
       body: action.payload.body,
     });

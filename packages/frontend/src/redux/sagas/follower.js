@@ -8,11 +8,11 @@ function* getAllUserFollowData(action) {
   try {
     following = yield call(
       axios.get,
-      `http://localhost:3001/follow/${action.payload}/following`,
+      `${process.env.REACT_APP_HOST}/follow/${action.payload}/following`,
     );
     followers = yield call(
       axios.get,
-      `http://localhost:3001/follow/${action.payload}/followers`,
+      `${process.env.REACT_APP_HOST}/follow/${action.payload}/followers`,
     );
   } catch (error) {
     throw new Error();

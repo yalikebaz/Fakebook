@@ -13,10 +13,10 @@ function Connect() {
   useEffect(() => {
     const f = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/users');
+        const response = await axios.get(`${process.env.REACT_APP_HOST}/users`);
         let { data } = response;
         data = data.filter(
-          (datum) => datum.name !== currentUser?.nickname.toLowerCase(),
+          (datum) => datum.name.toLowerCase() !== currentUser?.nickname.toLowerCase(),
         );
         setAllUsers(data);
         setFilteredUsers(data);

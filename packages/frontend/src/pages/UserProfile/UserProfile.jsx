@@ -21,7 +21,7 @@ function UserProfile() {
     const getUserData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:3001/posts/${connectionId}`,
+          `${process.env.REACT_APP_HOST}/posts/${connectionId}`,
         );
         setUserPosts(response.data);
       } catch (error) {
@@ -49,14 +49,14 @@ function UserProfile() {
   const toggleFollow = async () => {
     if (!isFollowing) {
       try {
-        await axios.post(`http://localhost:3001/follow/${loggedInUserId}/${connectionId}`);
+        await axios.post(`${process.env.REACT_APP_HOST}/follow/${loggedInUserId}/${connectionId}`);
         dispatch(getFollowData(loggedInUserId));
       } catch (error) {
         throw new Error();
       }
     } else if (isFollowing) {
       try {
-        await axios.delete(`http://localhost:3001/follow/${loggedInUserId}/${connectionId}`);
+        await axios.delete(`${process.env.REACT_APP_HOST}/follow/${loggedInUserId}/${connectionId}`);
         dispatch(getFollowData(loggedInUserId));
       } catch (error) {
         throw new Error();
