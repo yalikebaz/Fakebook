@@ -51,7 +51,7 @@ router.post("/:user_id", (req, res) => {
   const { title, body, time } = req.body;
   try {
     connection.query(
-      `INSERT INTO fakebook.posts (time, title, body, poster) VALUES ('${time}','${title}', '${body}', '${req.params.user_id}')`,
+      `INSERT INTO ${process.env.SQL_CREDS_DB}.posts (time, title, body, poster) VALUES ('${time}','${title}', '${body}', '${req.params.user_id}')`,
 
       (err, results) => {
         if (err) res.status(400).send(err);
@@ -77,7 +77,7 @@ router.post("/:user_id", (req, res) => {
 router.delete("/:post_id", (req, res) => {
   try {
     connection.query(
-      `DELETE FROM fakebook.posts WHERE(id = '${req.params.post_id}')`,
+      `DELETE FROM ${process.env.SQL_CREDS_DB}.posts WHERE(id = '${req.params.post_id}')`,
       (err, results) => {
         if (err) res.status(400).send(err);
         res.status(200).json({ deleted_post_id: req.params.post_id });
@@ -93,7 +93,7 @@ router.delete("/:post_id", (req, res) => {
 router.put("/:post_id", (req, res) => {
   const { title, body } = req.body;
   try {
-    let query = `UPDATE fakebook.posts SET title = '${title}', body = '${body}' WHERE (id = '${req.params.post_id}');`;
+    let query = `UPDATE ${process.env.SQL_CREDS_DB}.posts SET title = '${title}', body = '${body}' WHERE (id = '${req.params.post_id}');`;
     connection.query(query, (err, results) => {
       if (err) res.status(400).send(err);
       res.status(200).json({

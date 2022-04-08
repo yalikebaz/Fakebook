@@ -6,7 +6,7 @@ const router = express.Router();
 router.get("/", (req, res) => {
   // Get all fakebook users
   try {
-    connection.query(`SELECT * FROM fakebook.users`, (err, results) => {
+    connection.query(`SELECT * FROM ${process.env.SQL_CREDS_DB}.users`, (err, results) => {
       if (err) res.status(400).send(err);
       res.status(200).send(results);
     });
