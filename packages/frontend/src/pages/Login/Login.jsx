@@ -12,6 +12,25 @@ function Login() {
   return (
     <>
       <h1>Welcome to Fakebook!</h1>
+      <hr />
+      <p>
+        This is a fullstack application trying to emulate popular
+        social media sites, it's closer to Twitter to be honest!
+      </p>
+      <p>
+        To login, you can create an account on the next screen
+        by pressing 'Sign up', or you can use this test credential:
+
+      </p>
+      <p>
+        <strong>Username: </strong>
+        john@john.com
+      </p>
+      <p>
+        <strong>Password: </strong>
+        john
+      </p>
+
       <Button onClick={handleLogin}>Login</Button>
     </>
   );
