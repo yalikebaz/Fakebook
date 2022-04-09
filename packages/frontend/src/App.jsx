@@ -35,11 +35,11 @@ function App() {
       <ScrollToTop />
       <Container>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/index.html" element={<Navigate replace to="/timeline" />} />
           {isAuthenticated && (
           <Route path="/" element={<Navigate replace to="/timeline" />} />
-
           )}
+          <Route path="/" element={<Login />} />
           <Route
             path="/timeline"
             element={(

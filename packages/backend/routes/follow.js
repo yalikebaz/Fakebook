@@ -15,7 +15,7 @@ router.get("/:user_id/following", (req, res) => {
         if (err) res.status(400).send(err);
 
         let following = [];
-        results.map(field => {
+        results && results.map(field => {
           following.push({ name: field.name, id: field.is_following });
         });
 
