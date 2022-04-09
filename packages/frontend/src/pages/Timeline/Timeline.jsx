@@ -24,7 +24,7 @@ function Timeline() {
     }
   }, [user, dispatch]);
 
-  // Concatenates user's posts with their feed into 1 array: allPosts, sorted by time
+  // Concatenates user's posts with their feed into 1 array: allPosts, sorted by time.
   useEffect(() => {
     const timeline = userPosts.concat(feed);
     // eslint-disable-next-line no-nested-ternary
