@@ -8,7 +8,7 @@ function Container({ children }) {
   const { isLoading, isAuthenticated } = useAuth0();
   const { sub } = useSelector((state) => state.user);
 
-  if (isLoading || !sub) {
+  if (isLoading || (isAuthenticated && !sub)) {
     return (
       <div className="container">
         <div className="lds-dual-ring" />
