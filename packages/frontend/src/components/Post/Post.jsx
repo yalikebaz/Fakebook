@@ -59,6 +59,16 @@ function Post({ postContents }) {
     return `/connect/${postContents.poster}`;
   };
 
+  const handleTitleChange = (e) => {
+    e.target.value = e.target.value.replace(/[^a-zA-Z 0-9]/g, '');
+    setTitle(e.target.value);
+  };
+
+  const handleBodyChange = (e) => {
+    e.target.value = e.target.value.replace(/[^a-zA-Z 0-9]/g, '');
+    setBody(e.target.value);
+  };
+
   return (
     <div className="postContainer">
       <section>
@@ -92,13 +102,13 @@ function Post({ postContents }) {
           <>
             <div className="title">
               <Input
-                onChange={(e) => setTitle(e.target.value)}
+                onChange={handleTitleChange}
                 value={title}
                 block
               />
             </div>
             <textarea
-              onChange={(e) => setBody(e.target.value)}
+              onChange={handleBodyChange}
               rows="4"
               cols="40"
               value={body}
