@@ -18,6 +18,12 @@ function Login() {
         social media sites, it's closer to Twitter to be honest!
       </p>
       <p>
+        Take a look at the system design
+        {' '}
+        <a href="https://miro.com/app/board/uXjVOL6c7bA=/?invite_link_id=402942657406" target="__blank">here</a>
+      </p>
+
+      <p>
         To login, you can create an account on the next screen
         by pressing 'Sign up', or you can use this test credential:
 
