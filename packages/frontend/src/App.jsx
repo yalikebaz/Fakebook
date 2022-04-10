@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import {
   BrowserRouter, Routes, Route, Navigate,
 } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import ScrollToTop from './components/ScrollToTop';
 import Login from './pages/Login/Login';
@@ -20,6 +20,7 @@ import { getFollowData } from './redux/actions/follower';
 function App() {
   const { isAuthenticated, isLoading, user } = useAuth0();
   const dispatch = useDispatch();
+  const { sub } = useSelector((state) => state.user);
 
   // Retrieve/store user, post & follow details at the top level
   useEffect(() => {
@@ -29,6 +30,14 @@ function App() {
       dispatch(getFollowData(user.sub));
     }
   }, [dispatch, user, isLoading]);
+
+  if (isAuthenticated && !sub) {
+    return (
+      <div className="container">
+        <div className="lds-dual-ring" />
+      </div>
+    );
+  }
 
   return (
     <BrowserRouter>

@@ -1,14 +1,12 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { useSelector } from 'react-redux';
 import Nav from '../Nav/Nav';
 import './Container.css';
 
 function Container({ children }) {
   const { isLoading, isAuthenticated } = useAuth0();
-  const { sub } = useSelector((state) => state.user);
 
-  if (isLoading || (isAuthenticated && !sub)) {
+  if (isLoading) {
     return (
       <div className="container">
         <div className="lds-dual-ring" />
