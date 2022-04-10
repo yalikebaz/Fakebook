@@ -6,9 +6,9 @@ import './Container.css';
 
 function Container({ children }) {
   const { isLoading, isAuthenticated } = useAuth0();
-  const user = useSelector((state) => state.user);
+  const { sub } = useSelector((state) => state.user);
 
-  if (isLoading || !user) {
+  if (isLoading || !sub) {
     return (
       <div className="container">
         <div className="lds-dual-ring" />
