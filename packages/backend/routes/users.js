@@ -7,8 +7,8 @@ router.get("/", (req, res) => {
   // Get all fakebook users
   try {
     connection.query(`SELECT * FROM ${process.env.SQL_CREDS_DB}.users`, (err, results) => {
-      if (err) res.status(400).send(err);
-      res.status(200).send(results);
+      if (err) return res.status(400).send(err);
+      return res.status(200).send(results);
     });
   } catch (error) {
     console.log("error", error);

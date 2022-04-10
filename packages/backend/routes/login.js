@@ -11,8 +11,8 @@ router.post("/", (req, res) => {
       // followed this: https://stackoverflow.com/questions/1361340/how-can-i-do-insert-if-not-exists-in-mysql?noredirect=1&lq=1
       `INSERT IGNORE INTO ${process.env.SQL_CREDS_DB}.users SET id = '${id}', name = '${name}'`,
       (err, results) => {
-        if (err) res.status(400).send(err);
-        res.status(200).send("Success");
+        if (err) return res.status(400).send(err);
+        return res.status(200).send("Success");
       }
     );
   } catch (error) {

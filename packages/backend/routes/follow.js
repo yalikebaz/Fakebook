@@ -12,14 +12,14 @@ router.get("/:user_id/following", (req, res) => {
       INNER JOIN followers ON users.id=followers.is_following
       WHERE followers.user_id = '${req.params.user_id}';`,
       (err, results) => {
-        if (err) res.status(400).send(err);
+        if (err) return res.status(400).send(err);
 
         let following = [];
         results && results.map(field => {
           following.push({ name: field.name, id: field.is_following });
         });
 
-        res.status(200).send(following);
+        return res.status(200).send(following);
       }
     );
   } catch (error) {
@@ -38,14 +38,14 @@ router.get("/:user_id/followers", (req, res) => {
        WHERE followers.is_following = '${req.params.user_id}';`,
 
       (err, results) => {
-        if (err) res.status(400).send(err);
+        if (err) return res.status(400).send(err);
 
         let followers = [];
         results.map(field => {
           followers.push({ name: field.name, id: field.user_id });
         });
 
-        res.status(200).send(followers);
+        return res.status(200).send(followers);
       }
     );
   } catch (error) {
@@ -60,9 +60,9 @@ router.post("/:user_id/:is_following_id", (req, res) => {
     connection.query(
       `INSERT INTO followers (user_id, is_following) VALUES ('${req.params.user_id}','${req.params.is_following_id}');`,
       (err, results) => {
-        if (err) res.status(400).send(err);
+        if (err) return res.status(400).send(err);
 
-        res.status(200).send({
+        return res.status(200).send({
           user: req.params.user_id,
           is_following: req.params.is_following_id
         });
@@ -80,9 +80,9 @@ router.delete("/:user_id/:is_following_id", (req, res) => {
     connection.query(
       `DELETE FROM followers WHERE (user_id = '${req.params.user_id}' AND is_following = '${req.params.is_following_id}');`,
       (err, results) => {
-        if (err) res.status(400).send(err);
+        if (err) return res.status(400).send(err);
 
-        res.status(200).send({
+        return res.status(200).send({
           user: req.params.user_id,
           is_not_following: req.params.is_following_id
         });

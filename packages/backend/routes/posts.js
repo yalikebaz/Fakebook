@@ -14,8 +14,8 @@ router.get("/:user_id", (req, res) => {
       WHERE users.id='${req.params.user_id}'
       `,
       (err, results) => {
-        if (err) res.status(400).send(err);
-        res.status(200).send(results);
+        if (err) return res.status(400).send(err);
+        return res.status(200).send(results);
       }
     );
   } catch (error) {
@@ -36,8 +36,8 @@ router.get("/feed/:user_id", (req, res) => {
        ON posts.poster=users.id
        WHERE followers.user_id='${req.params.user_id}'`,
       (err, results) => {
-        if (err) res.status(400).send(err);
-        res.status(200).send(results);
+        if (err) return res.status(400).send(err);
+        return res.status(200).send(results);
       }
     );
   } catch (error) {
@@ -79,8 +79,8 @@ router.delete("/:post_id", (req, res) => {
     connection.query(
       `DELETE FROM ${process.env.SQL_CREDS_DB}.posts WHERE(id = '${req.params.post_id}')`,
       (err, results) => {
-        if (err) res.status(400).send(err);
-        res.status(200).json({ deleted_post_id: req.params.post_id });
+        if (err) return res.status(400).send(err);
+        return res.status(200).json({ deleted_post_id: req.params.post_id });
       }
     );
   } catch (error) {
@@ -95,8 +95,8 @@ router.put("/:post_id", (req, res) => {
   try {
     let query = `UPDATE ${process.env.SQL_CREDS_DB}.posts SET title = '${title}', body = '${body}' WHERE (id = '${req.params.post_id}');`;
     connection.query(query, (err, results) => {
-      if (err) res.status(400).send(err);
-      res.status(200).json({
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({
         message: "Success",
         post: {
           id: req.params.post_id,
