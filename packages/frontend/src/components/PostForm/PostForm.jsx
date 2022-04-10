@@ -39,15 +39,26 @@ function PostForm() {
     dispatch(addNewPost(postContents));
   };
 
+  // Protecting against SQL injection
+  const handleInputChange = (e) => {
+    e.target.value = e.target.value.replace(/[^a-zA-Z 0-9]/g, '');
+    setTitle(e.target.value);
+  };
+
+  const handleTextChange = (e) => {
+    e.target.value = e.target.value.replace(/[^a-zA-Z 0-9]/g, '');
+    setBody(e.target.value);
+  };
+
   return (
     <form className="formWrapper">
       <Input
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={handleInputChange}
         value={title}
         placeholder="Name your post"
       />
       <textarea
-        onChange={(e) => setBody(e.target.value)}
+        onChange={handleTextChange}
         value={body}
         rows="4"
         cols="40"
