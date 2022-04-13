@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { ReactComponent as ConnectIcon } from '../../assets/connect.svg';
 import Input from '../../components/Input/Input';
 import './Connect.css';
 
@@ -34,23 +35,26 @@ function Connect() {
   };
 
   return (
-    <>
-      <h1>Find a user on Fakebook!</h1>
-      <Input
-        onChange={filterUsers}
-        search
-        placeholder="Search for a user..."
-        block
-      />
-      <div className="userContainer">
-        {filteredUsers.map((user, i) => (
-          <NavLink key={i} to={`/connect/${user.id}`} className="user">
-            {user.name}
-          </NavLink>
-        ))}
-      </div>
-      <h2>Click a user's name to view their profile</h2>
-    </>
+    <section className="connectContainer">
+      <section>
+        <h1>Find someone to follow</h1>
+        <h2>Click a user's name to view their profile</h2>
+        <Input
+          onChange={filterUsers}
+          search
+          placeholder="Search for a user..."
+          block
+        />
+        <div className="userContainer">
+          {filteredUsers.map((user, i) => (
+            <NavLink key={i} to={`/connect/${user.id}`} className="user">
+              {user.name}
+            </NavLink>
+          ))}
+        </div>
+      </section>
+      <ConnectIcon />
+    </section>
   );
 }
 

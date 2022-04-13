@@ -1,5 +1,20 @@
-.timelineContainer{
+.timelineContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.timelinePostContainer {
     display: flex;
     align-items: center;
     flex-direction: column;
+}
+
+.timelineContainer svg {
+    width: 460px;
+    padding-top: 50px;
+}
+
+.timelineTitle {
+    font-size: 40px;
 }

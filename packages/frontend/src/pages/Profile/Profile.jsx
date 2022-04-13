@@ -19,7 +19,8 @@ function Profile() {
   return (
     <div className="profileContainer">
       <div className="leftContainer">
-        <h1>{`Hi, ${user?.nickname}`}</h1>
+        <h1 className="profileTitle">{`Hi, ${user?.nickname}`}</h1>
+        <h2>What have you been up to?</h2>
         <PostForm />
         <h2>Your posts</h2>
         {posts.map((post) => <Post key={post.id} postContents={post} />)}

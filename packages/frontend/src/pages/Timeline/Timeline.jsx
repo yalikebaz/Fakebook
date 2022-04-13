@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './Timeline.css';
 import React, { useEffect, useState } from 'react';
 import PostForm from '../../components/PostForm/PostForm';
+import { ReactComponent as TimelineIcon } from '../../assets/timeline.svg';
 import Post from '../../components/Post/Post';
 import { getFeed } from '../../redux/actions/post';
 
@@ -34,19 +35,23 @@ function Timeline() {
 
   return (
     <div className="timelineContainer">
-      <section>
-        <h1>
-          {firstName}
-          's timeline
-        </h1>
-        <PostForm />
-      </section>
+      <section className="timelinePostContainer">
+        <section>
+          <h1 className="timelineTitle">
+            {firstName}
+            's timeline
+          </h1>
+          <h2>How's it going?</h2>
+          <PostForm />
+        </section>
 
-      <section>
-        <h2>The latest news from you and the people you follow...</h2>
-        {allPosts
+        <section>
+          <h2>The latest news from you and the people you follow...</h2>
+          {allPosts
           && allPosts.map((post) => <Post key={post.id} postContents={post} />)}
+        </section>
       </section>
+      <TimelineIcon />
     </div>
   );
 }

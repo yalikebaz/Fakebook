@@ -9,3 +9,6 @@
   flex-direction: column;
 }
 
+.profileTitle {
+  font-size: 40px;
+}

@@ -72,7 +72,7 @@ function UserProfile() {
     <div className="profile">
       <Button onClick={onBack}>◁ Back</Button>
       <h1>{`${name}'s profile`}</h1>
-      <h2>{`${name}'s posts`}</h2>
+      <h2>{`Follow ${name} to see their posts in your timeline`}</h2>
       <Button block onClick={toggleFollow}>
         {isFollowing ? 'Unfollow User' : 'Follow user'}
       </Button>

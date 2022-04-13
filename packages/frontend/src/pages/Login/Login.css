@@ -1,0 +1,19 @@
+.loginContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 80vh;
+}
+
+.loginBlurb {
+    width: 400px;
+}
+
+.loginContainer svg{
+    height: 400px;
+    padding-top: 30px;
+}
+
+.loginContainer h1 {
+  font-size: 40px;
+}

@@ -9,6 +9,7 @@ function Input({
   return (
     <input
       placeholder={placeholder}
+      maxLength="40"
       onChange={onChange}
       type={search ? 'search' : 'text'}
       className={`${blockClass}`}

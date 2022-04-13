@@ -61,6 +61,7 @@ function PostForm() {
         onChange={handleTextChange}
         value={body}
         rows="4"
+        maxLength="250"
         cols="40"
         placeholder="What do you want to share?"
       />

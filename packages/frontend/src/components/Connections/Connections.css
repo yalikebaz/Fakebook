@@ -1,17 +1,23 @@
 .connectionPageContainer {
   display: flex;
   flex-direction: column;
+  padding-top: 80px;
 }
 
 .cardContainer {
-  width: 200px;
+  width: 170px;
   margin-bottom: 30px;
   height: fit-content;
   background-color: #2F3061;
-  box-shadow: 0 14px 50px -4px hsla(0,0%,0%,0.25);
+  box-shadow: 0 14px 50px -4px hsla(0, 0%, 0%, 0.25);
   border-radius: 5px;
   padding: 10px;
   color: #FFFFFC;
+  padding: 30px 20px
+}
+
+.cardContainer h2 {
+  margin-top: 5px;
 }
 
 .connection {
@@ -19,6 +25,7 @@
   width: fit-content;
   text-decoration: none;
   color: #FFFFFC;
+  padding: 5px 0;
 }
 
 .connection:hover {

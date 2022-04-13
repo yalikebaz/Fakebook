@@ -109,6 +109,7 @@ function Post({ postContents }) {
             </div>
             <textarea
               onChange={handleBodyChange}
+              maxLength="250"
               rows="4"
               cols="40"
               value={body}
