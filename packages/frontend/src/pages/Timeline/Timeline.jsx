@@ -51,7 +51,9 @@ function Timeline() {
           && allPosts.map((post) => <Post key={post.id} postContents={post} />)}
         </section>
       </section>
-      <TimelineIcon />
+      <section className="iconSection">
+        <TimelineIcon />
+      </section>
     </div>
   );
 }

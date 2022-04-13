@@ -10,7 +10,12 @@
     flex-direction: column;
 }
 
+.iconSection {
+    width: 400px;
+}
+
 .timelineContainer svg {
+    position: fixed;
     width: 460px;
     padding-top: 50px;
 }
