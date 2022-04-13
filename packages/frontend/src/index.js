@@ -27,7 +27,7 @@ ReactDOM.render(
       <Auth0Provider
         domain="dev-cmccovs2.us.auth0.com"
         clientId="Yq68gApSM1rSGBPHGDGSSnoxDy2aGVqS"
-        redirectUri={process.env.REACT_APP_REDIRECT}
+        redirectUri={`${process.env.REACT_APP_REDIRECT}/timeline`}
         useRefreshTokens
         cacheLocation="localstorage"
       >
