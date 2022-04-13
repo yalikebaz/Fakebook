@@ -27,7 +27,7 @@ ReactDOM.render(
       <Auth0Provider
         domain="dev-cmccovs2.us.auth0.com"
         clientId="Yq68gApSM1rSGBPHGDGSSnoxDy2aGVqS"
-        redirectUri={`${window.location.origin}/timeline`}
+        redirectUri="https://fakebook100.netltimeline"
         useRefreshTokens
         cacheLocation="localstorage"
       >
