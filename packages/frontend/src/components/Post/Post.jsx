@@ -87,7 +87,7 @@ function Post({ postContents }) {
           </>
         )}
         <NavLink
-          to={window.location.href.includes(postContents.name) ? '' : getLink()}
+          to={window.location.href.toLowerCase().includes(postContents.name) ? '' : getLink()}
           className="poster"
         >
           {getName()}
