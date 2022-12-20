@@ -8,7 +8,7 @@ import Post from '../../components/Post/Post';
 import { getFollowData } from '../../redux/actions/follower';
 
 function UserProfile() {
-  const { user_id: connectionId } = useParams();
+  const { user_id: connectionId, user_name: userName } = useParams();
   const navigate = useNavigate();
   const [userPosts, setUserPosts] = useState([]);
   const [name, setName] = useState('');
@@ -23,7 +23,12 @@ function UserProfile() {
         const response = await axios.get(
           `${process.env.REACT_APP_HOST}/posts/${connectionId}`,
         );
-        setUserPosts(response.data);
+
+        const sortedPosts = response.data.sort((a, b) => (
+        // eslint-disable-next-line no-nested-ternary
+          a.time < b.time ? 1 : b.time < a.time ? -1 : 0
+        ));
+        setUserPosts(sortedPosts);
       } catch (error) {
         throw new Error();
       }
@@ -32,10 +37,7 @@ function UserProfile() {
   }, [connectionId]);
 
   useEffect(() => {
-    if (userPosts.length === 0) {
-      return;
-    }
-    const firstName = userPosts[0].name.charAt(0).toUpperCase() + userPosts[0].name.slice(1);
+    const firstName = userName.charAt(0).toUpperCase() + userName.slice(1);
     setName(firstName);
   }, [userPosts]);
 

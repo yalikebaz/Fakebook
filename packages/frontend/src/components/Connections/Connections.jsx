@@ -14,10 +14,10 @@ function Connections() {
           && following.map((follower, i) => (
             <NavLink
               key={i}
-              to={`/connect/${follower.id}`}
+              to={`/connect/${follower.name}/${follower.id}`}
               className="connection"
             >
-              {follower.name}
+              {follower.name.charAt(0).toUpperCase() + follower.name.slice(1)}
             </NavLink>
           ))}
       </section>
@@ -27,10 +27,10 @@ function Connections() {
           && followers.map((follower, i) => (
             <NavLink
               key={i}
-              to={`/connect/${follower.id}`}
+              to={`/connect/${follower.name}/${follower.id}`}
               className="connection"
             >
-              {follower.name}
+              {follower.name.charAt(0).toUpperCase() + follower.name.slice(1)}
             </NavLink>
           ))}
       </section>

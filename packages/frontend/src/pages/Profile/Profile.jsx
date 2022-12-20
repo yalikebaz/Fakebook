@@ -7,13 +7,13 @@ import './Profile.css';
 
 function Profile() {
   const user = useSelector((state) => state.user);
-  let userPosts = useSelector((state) => state.posts);
+  const userPosts = useSelector((state) => state.posts);
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     // eslint-disable-next-line no-nested-ternary
-    userPosts = userPosts.sort((a, b) => (a.time < b.time ? 1 : b.time < a.time ? -1 : 0));
-    setPosts(userPosts);
+    const sortedPosts = userPosts.sort((a, b) => (a.time < b.time ? 1 : b.time < a.time ? -1 : 0));
+    setPosts(sortedPosts);
   }, [userPosts]);
 
   return (

@@ -19,6 +19,9 @@ function Connect() {
         data = data.filter(
           (datum) => datum.name.toLowerCase() !== currentUser?.nickname.toLowerCase(),
         );
+        for (let i = 0; i < data.length; i += 1) {
+          data[i].name = data[i].name.charAt(0).toUpperCase() + data[i].name.slice(1);
+        }
         setAllUsers(data);
         setFilteredUsers(data);
       } catch (e) {
@@ -47,7 +50,7 @@ function Connect() {
         />
         <div className="userContainer">
           {filteredUsers.map((user, i) => (
-            <NavLink key={i} to={`/connect/${user.id}`} className="user">
+            <NavLink key={i} to={`/connect/${user.name}/${user.id}`} className="user">
               {user.name}
             </NavLink>
           ))}

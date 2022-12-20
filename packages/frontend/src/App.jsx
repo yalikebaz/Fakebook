@@ -82,7 +82,7 @@ function App() {
               )}
           />
           <Route
-            path="/connect/:user_id"
+            path="/connect/:user_name/:user_id"
             element={(
               <Protected>
                 <UserProfile />

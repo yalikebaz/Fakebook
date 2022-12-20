@@ -56,7 +56,7 @@ function Post({ postContents }) {
     if (postContents.poster === user.sub) {
       return '/profile';
     }
-    return `/connect/${postContents.poster}`;
+    return `/connect/${postContents.name}/${postContents.poster}`;
   };
 
   const handleTitleChange = (e) => {
@@ -87,7 +87,7 @@ function Post({ postContents }) {
           </>
         )}
         <NavLink
-          to={getLink()}
+          to={window.location.href.includes(postContents.name) ? '' : getLink()}
           className="poster"
         >
           {getName()}
