@@ -1,5 +1,5 @@
 import express from "express";
-import { connection } from "../server.js";
+import { connection } from "../index.js";
 
 const router = express.Router();
 
