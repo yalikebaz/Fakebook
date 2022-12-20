@@ -13,12 +13,14 @@ const PORT = 3001;
 // Connecting to mySql
 export const connection = mysql.createConnection({
   host: process.env.SQL_CREDS_HOST,
+  port: process.env.SQL_CREDS_PORT,
   user: process.env.SQL_CREDS_USER,
   password: process.env.SQL_CREDS_PASS,
   database: process.env.SQL_CREDS_DB
 });
 
 connection.connect(error => {
+  console.log('Connecting to MySQL...')
   if (error) {
     return console.error(
       "Database connection error (is it on?): ".red + error.message.red
