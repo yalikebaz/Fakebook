@@ -24,6 +24,8 @@ function App() {
 
   // Retrieve/store user, post & follow details at the top level
   useEffect(() => {
+    console.log('user', user)
+    console.log('isAuthenticated', isAuthenticated)
     if (user && !isLoading) {
       dispatch(checkUser(user));
       dispatch(getPosts(user.sub));
